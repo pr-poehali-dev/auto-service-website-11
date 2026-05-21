@@ -410,9 +410,8 @@ export default function Index() {
                     руках
                   </h1>
                   <p className="text-zinc-400 text-lg max-w-xl mb-12 leading-relaxed">
-                    Ремонт, обслуживание и шиномонтаж любых марок. 17 лет опыта,
-                    48 мастеров, гарантия на все работы. Работаем Пн–Вс
-                    9:00–18:00.
+                    Ремонт, обслуживание и шиномонтаж любых марок. гарантия на
+                    все работы. Работаем Пн–Вс 9:00–18:00.
                   </p>
                   <div className="flex flex-wrap gap-3 mb-10">
                     <span className="text-zinc-600 text-sm border border-zinc-700 px-3 py-1">
