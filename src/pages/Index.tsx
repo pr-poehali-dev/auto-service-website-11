@@ -1,51 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import Icon from "@/components/ui/icon";
-
-const SERVICES_DATA = [
-  { brand: "BMW", models: ["3 серия", "5 серия", "7 серия", "X5", "X3"], prices: { "Двигатель": [15000, 85000], "КПП": [12000, 60000], "Тормоза": [3500, 18000], "Подвеска": [4000, 25000], "Электрика": [2000, 30000] } },
-  { brand: "Mercedes", models: ["C-класс", "E-класс", "S-класс", "GLE", "GLC"], prices: { "Двигатель": [18000, 95000], "КПП": [14000, 70000], "Тормоза": [4000, 20000], "Подвеска": [5000, 28000], "Электрика": [2500, 35000] } },
-  { brand: "Toyota", models: ["Camry", "RAV4", "Land Cruiser", "Corolla", "Highlander"], prices: { "Двигатель": [10000, 65000], "КПП": [8000, 45000], "Тормоза": [2500, 14000], "Подвеска": [3000, 18000], "Электрика": [1500, 22000] } },
-  { brand: "Audi", models: ["A4", "A6", "Q5", "Q7", "A8"], prices: { "Двигатель": [16000, 90000], "КПП": [13000, 65000], "Тормоза": [3800, 19000], "Подвеска": [4500, 26000], "Электрика": [2200, 32000] } },
-  { brand: "Volkswagen", models: ["Passat", "Tiguan", "Golf", "Touareg", "Polo"], prices: { "Двигатель": [9000, 55000], "КПП": [7500, 40000], "Тормоза": [2200, 13000], "Подвеска": [2800, 16000], "Электрика": [1400, 20000] } },
-  { brand: "Kia", models: ["Sportage", "Sorento", "Rio", "Cerato", "Stinger"], prices: { "Двигатель": [7000, 45000], "КПП": [6000, 35000], "Тормоза": [2000, 11000], "Подвеска": [2500, 14000], "Электрика": [1200, 17000] } },
-  { brand: "Hyundai", models: ["Tucson", "Santa Fe", "Solaris", "Elantra", "Creta"], prices: { "Двигатель": [7000, 44000], "КПП": [6000, 34000], "Тормоза": [2000, 11000], "Подвеска": [2400, 13500], "Электрика": [1200, 16000] } },
-  { brand: "Lada", models: ["Vesta", "Granta", "Niva", "XRAY", "Largus"], prices: { "Двигатель": [4000, 25000], "КПП": [3500, 20000], "Тормоза": [1200, 7000], "Подвеска": [1500, 9000], "Электрика": [800, 10000] } },
-];
-
-const NODES = ["Двигатель", "КПП", "Тормоза", "Подвеска", "Электрика"];
-
-const PRICE_LIST = [
-  { category: "Двигатель", items: [
-    { name: "Замена масла и фильтра", price: "от 800 ₽", time: "30 мин" },
-    { name: "Диагностика двигателя", price: "от 1 500 ₽", time: "1 час" },
-    { name: "Замена ремня ГРМ", price: "от 5 000 ₽", time: "3–5 часов" },
-    { name: "Капитальный ремонт ДВС", price: "от 25 000 ₽", time: "3–7 дней" },
-  ]},
-  { category: "КПП", items: [
-    { name: "Замена масла в КПП", price: "от 1 200 ₽", time: "1 час" },
-    { name: "Диагностика КПП", price: "от 2 000 ₽", time: "1–2 часа" },
-    { name: "Ремонт АКПП", price: "от 15 000 ₽", time: "2–5 дней" },
-    { name: "Замена сцепления", price: "от 8 000 ₽", time: "4–6 часов" },
-  ]},
-  { category: "Тормоза", items: [
-    { name: "Замена тормозных колодок", price: "от 1 500 ₽", time: "1 час" },
-    { name: "Замена тормозных дисков", price: "от 3 500 ₽", time: "1.5 часа" },
-    { name: "Прокачка тормозной системы", price: "от 1 000 ₽", time: "1 час" },
-    { name: "Замена тормозного цилиндра", price: "от 2 500 ₽", time: "2 часа" },
-  ]},
-  { category: "Подвеска", items: [
-    { name: "Замена амортизаторов", price: "от 3 000 ₽", time: "2–3 часа" },
-    { name: "Замена рычагов подвески", price: "от 2 500 ₽", time: "2 часа" },
-    { name: "Развал-схождение", price: "от 2 000 ₽", time: "1 час" },
-    { name: "Замена рулевых наконечников", price: "от 1 800 ₽", time: "1.5 часа" },
-  ]},
-  { category: "Электрика", items: [
-    { name: "Компьютерная диагностика", price: "от 1 000 ₽", time: "30 мин" },
-    { name: "Замена аккумулятора", price: "от 500 ₽", time: "30 мин" },
-    { name: "Ремонт генератора", price: "от 3 000 ₽", time: "2–4 часа" },
-    { name: "Ремонт стартера", price: "от 2 500 ₽", time: "2–3 часа" },
-  ]},
-];
+import {
+  ALL_BRANDS,
+  NODES_CATEGORIES,
+  CAR_DATA,
+  getModelsForBrand,
+  getNodesForBrandModel,
+} from "@/data/carData";
 
 const ABOUT_STATS = [
   { value: "17", label: "лет на рынке" },
@@ -71,33 +32,69 @@ const navItems = [
 
 export default function Index() {
   const [activeSection, setActiveSection] = useState("home");
-  const [searchBrand, setSearchBrand] = useState("");
-  const [searchNode, setSearchNode] = useState("");
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  // Price section state
+  const [priceBrand, setPriceBrand] = useState("");
+  const [priceModel, setPriceModel] = useState("");
+  const [priceCategory, setPriceCategory] = useState("Двигатель");
+  const [brandSearch, setBrandSearch] = useState("");
+
+  // Calculator state
   const [calcBrand, setCalcBrand] = useState("");
   const [calcModel, setCalcModel] = useState("");
   const [calcNode, setCalcNode] = useState("");
   const [calcResult, setCalcResult] = useState<[number, number] | null>(null);
-  const [priceCategory, setPriceCategory] = useState("Двигатель");
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [calcBrandSearch, setCalcBrandSearch] = useState("");
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [activeSection]);
 
-  const brands = SERVICES_DATA.map(s => s.brand);
-  const calcModels = calcBrand ? SERVICES_DATA.find(s => s.brand === calcBrand)?.models || [] : [];
-
-  const handleCalc = () => {
-    if (calcBrand && calcNode) {
-      const brandData = SERVICES_DATA.find(s => s.brand === calcBrand);
-      if (brandData) setCalcResult(brandData.prices[calcNode] as [number, number]);
-    }
-  };
-
   const navigate = (id: string) => {
     setActiveSection(id);
     setMenuOpen(false);
   };
+
+  // Price section computed
+  const priceModels = useMemo(() => priceBrand ? getModelsForBrand(priceBrand) : [], [priceBrand]);
+  const priceNodes = useMemo(() => {
+    if (priceBrand && priceModel) {
+      const nodes = getNodesForBrandModel(priceBrand, priceModel);
+      return nodes.filter(n => n.category === priceCategory);
+    }
+    return [];
+  }, [priceBrand, priceModel, priceCategory]);
+
+  // Default price list (без выбранного автомобиля)
+  const defaultPriceNodes = useMemo(() => {
+    const defaultBrand = CAR_DATA[3]; // VW как средний ориентир
+    const defaultModel = defaultBrand.models[1];
+    return defaultModel.nodes.filter(n => n.category === priceCategory);
+  }, [priceCategory]);
+
+  const filteredBrands = useMemo(() =>
+    ALL_BRANDS.filter(b => b.toLowerCase().includes(brandSearch.toLowerCase())),
+    [brandSearch]
+  );
+  const filteredCalcBrands = useMemo(() =>
+    ALL_BRANDS.filter(b => b.toLowerCase().includes(calcBrandSearch.toLowerCase())),
+    [calcBrandSearch]
+  );
+
+  // Calculator computed
+  const calcModels = useMemo(() => calcBrand ? getModelsForBrand(calcBrand) : [], [calcBrand]);
+
+  const handleCalc = () => {
+    if (calcBrand && calcModel && calcNode) {
+      const nodes = getNodesForBrandModel(calcBrand, calcModel);
+      const found = nodes.find(n => n.name === calcNode);
+      if (found) setCalcResult(found.price);
+    }
+  };
+
+  const displayNodes = priceBrand && priceModel ? priceNodes : defaultPriceNodes;
+  const isCustomPrice = priceBrand && priceModel;
 
   return (
     <div className="min-h-screen bg-white font-golos text-zinc-900">
@@ -170,7 +167,6 @@ export default function Index() {
                   }} />
                 ))}
               </div>
-              <div className="absolute right-0 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-zinc-700 to-transparent" />
               <div className="max-w-6xl mx-auto px-6 relative z-10 py-28">
                 <div className="max-w-3xl">
                   <p className="text-zinc-500 text-xs tracking-[0.35em] uppercase mb-8">
@@ -184,17 +180,16 @@ export default function Index() {
                   <p className="text-zinc-400 text-lg max-w-xl mb-12 leading-relaxed">
                     Ремонт и обслуживание любых марок. 17 лет опыта, 48 мастеров, гарантия на все работы.
                   </p>
+                  <div className="flex flex-wrap gap-3 mb-6">
+                    <span className="text-zinc-600 text-sm border border-zinc-700 px-3 py-1">{ALL_BRANDS.length}+ марок</span>
+                    <span className="text-zinc-600 text-sm border border-zinc-700 px-3 py-1">50 видов работ</span>
+                    <span className="text-zinc-600 text-sm border border-zinc-700 px-3 py-1">Гарантия 12 мес.</span>
+                  </div>
                   <div className="flex flex-col sm:flex-row gap-4">
-                    <button
-                      onClick={() => navigate("contacts")}
-                      className="bg-white text-zinc-900 px-8 py-4 font-semibold text-base hover:bg-zinc-100 transition-colors"
-                    >
+                    <button onClick={() => navigate("contacts")} className="bg-white text-zinc-900 px-8 py-4 font-semibold text-base hover:bg-zinc-100 transition-colors">
                       Записаться на ремонт
                     </button>
-                    <button
-                      onClick={() => navigate("calc")}
-                      className="border border-zinc-600 text-white px-8 py-4 font-medium text-base hover:border-zinc-300 transition-colors"
-                    >
+                    <button onClick={() => navigate("calc")} className="border border-zinc-600 text-white px-8 py-4 font-medium text-base hover:border-zinc-300 transition-colors">
                       Рассчитать стоимость
                     </button>
                   </div>
@@ -202,7 +197,6 @@ export default function Index() {
               </div>
             </section>
 
-            {/* Stats bar */}
             <section className="border-b border-zinc-100">
               <div className="max-w-6xl mx-auto px-6">
                 <div className="grid grid-cols-2 md:grid-cols-4">
@@ -216,17 +210,13 @@ export default function Index() {
               </div>
             </section>
 
-            {/* Services grid */}
             <section className="py-24 max-w-6xl mx-auto px-6">
               <div className="flex items-end justify-between mb-14">
                 <div>
                   <p className="text-zinc-400 text-xs tracking-[0.25em] uppercase mb-3">Что мы делаем</p>
                   <h2 className="text-4xl font-bold">Услуги</h2>
                 </div>
-                <button
-                  onClick={() => navigate("price")}
-                  className="hidden md:flex items-center gap-2 text-sm font-medium text-zinc-500 hover:text-zinc-900 transition-colors"
-                >
+                <button onClick={() => navigate("price")} className="hidden md:flex items-center gap-2 text-sm font-medium text-zinc-500 hover:text-zinc-900 transition-colors">
                   Прайс-лист <Icon name="ArrowRight" size={15} />
                 </button>
               </div>
@@ -250,15 +240,11 @@ export default function Index() {
               </div>
             </section>
 
-            {/* CTA */}
             <section className="bg-zinc-900 py-24">
               <div className="max-w-6xl mx-auto px-6 text-center">
                 <h2 className="text-white text-4xl font-bold mb-5">Нужна помощь с автомобилем?</h2>
                 <p className="text-zinc-400 mb-10 max-w-lg mx-auto">Запишитесь онлайн или позвоните — мастер проконсультирует бесплатно</p>
-                <button
-                  onClick={() => navigate("contacts")}
-                  className="bg-white text-zinc-900 px-10 py-4 font-semibold hover:bg-zinc-100 transition-colors"
-                >
+                <button onClick={() => navigate("contacts")} className="bg-white text-zinc-900 px-10 py-4 font-semibold hover:bg-zinc-100 transition-colors">
                   Записаться на сервис
                 </button>
               </div>
@@ -274,19 +260,12 @@ export default function Index() {
               <h1 className="text-5xl font-bold mb-6">О сервисе</h1>
               <div className="w-16 h-px bg-zinc-900" />
             </div>
-
             <div className="grid md:grid-cols-2 gap-16 mb-24">
               <div>
                 <h2 className="text-2xl font-semibold mb-6">Профессиональный подход к каждому автомобилю</h2>
-                <p className="text-zinc-500 leading-relaxed mb-5">
-                  Работаем с 2007 года и накопили огромный опыт в обслуживании и ремонте автомобилей всех марок. Сервис оснащён современным диагностическим оборудованием.
-                </p>
-                <p className="text-zinc-500 leading-relaxed mb-5">
-                  Каждый мастер имеет профильное образование и регулярно проходит обучение у официальных дилеров. Гарантируем качество на все виды работ.
-                </p>
-                <p className="text-zinc-500 leading-relaxed">
-                  Используем оригинальные запчасти или сертифицированные аналоги. Прозрачное ценообразование — вы знаете, за что платите.
-                </p>
+                <p className="text-zinc-500 leading-relaxed mb-5">Работаем с 2007 года и накопили огромный опыт в обслуживании и ремонте автомобилей всех марок. Сервис оснащён современным диагностическим оборудованием.</p>
+                <p className="text-zinc-500 leading-relaxed mb-5">Каждый мастер имеет профильное образование и регулярно проходит обучение у официальных дилеров. Гарантируем качество на все виды работ.</p>
+                <p className="text-zinc-500 leading-relaxed">Используем оригинальные запчасти или сертифицированные аналоги. Прозрачное ценообразование — вы знаете, за что платите.</p>
               </div>
               <div className="space-y-px bg-zinc-100">
                 {[
@@ -307,7 +286,6 @@ export default function Index() {
                 ))}
               </div>
             </div>
-
             <div className="border-t border-zinc-100 pt-16">
               <h2 className="text-2xl font-semibold mb-10">В цифрах</h2>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-zinc-100">
@@ -325,116 +303,159 @@ export default function Index() {
         {/* ======= PRICE ======= */}
         {activeSection === "price" && (
           <div className="max-w-6xl mx-auto px-6 py-20">
-            <div className="mb-12">
+            <div className="mb-10">
               <p className="text-zinc-400 text-xs tracking-[0.25em] uppercase mb-3">Стоимость работ</p>
               <h1 className="text-5xl font-bold mb-3">Прайс-лист</h1>
-              <p className="text-zinc-500 text-sm">Выберите марку и узел для фильтрации по вашему автомобилю</p>
+              <p className="text-zinc-500 text-sm">Выберите марку и модель, чтобы увидеть цены для вашего автомобиля</p>
             </div>
 
             {/* Filters */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-8 p-6 bg-zinc-50 border border-zinc-100">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-8 p-6 bg-zinc-50 border border-zinc-100">
               <div>
-                <label className="block text-xs font-medium text-zinc-400 uppercase tracking-wider mb-2">Марка автомобиля</label>
+                <label className="block text-xs font-medium text-zinc-400 uppercase tracking-wider mb-2">
+                  Марка автомобиля
+                  <span className="ml-2 text-zinc-300 normal-case tracking-normal font-normal">{ALL_BRANDS.length} марок</span>
+                </label>
+                <div className="relative">
+                  <input
+                    type="text"
+                    placeholder="Поиск марки..."
+                    value={brandSearch}
+                    onChange={e => setBrandSearch(e.target.value)}
+                    className="w-full border border-zinc-200 bg-white px-3 py-2 text-sm focus:outline-none focus:border-zinc-900 transition-colors mb-1"
+                  />
+                </div>
                 <select
-                  value={searchBrand}
-                  onChange={e => setSearchBrand(e.target.value)}
-                  className="w-full border border-zinc-200 bg-white px-4 py-3 text-sm focus:outline-none focus:border-zinc-900 transition-colors"
+                  value={priceBrand}
+                  onChange={e => { setPriceBrand(e.target.value); setPriceModel(""); }}
+                  size={5}
+                  className="w-full border border-zinc-200 bg-white px-3 py-1 text-sm focus:outline-none focus:border-zinc-900 transition-colors"
                 >
-                  <option value="">Все марки</option>
-                  {brands.map(b => <option key={b}>{b}</option>)}
+                  <option value="">— Все марки —</option>
+                  {filteredBrands.map(b => <option key={b} value={b}>{b}</option>)}
                 </select>
               </div>
               <div>
-                <label className="block text-xs font-medium text-zinc-400 uppercase tracking-wider mb-2">Узел ремонта</label>
+                <label className="block text-xs font-medium text-zinc-400 uppercase tracking-wider mb-2">
+                  Модель
+                  {priceModels.length > 0 && <span className="ml-2 text-zinc-300 normal-case tracking-normal font-normal">{priceModels.length} моделей</span>}
+                </label>
                 <select
-                  value={searchNode}
-                  onChange={e => { setSearchNode(e.target.value); if (e.target.value) setPriceCategory(e.target.value); }}
-                  className="w-full border border-zinc-200 bg-white px-4 py-3 text-sm focus:outline-none focus:border-zinc-900 transition-colors"
+                  value={priceModel}
+                  onChange={e => setPriceModel(e.target.value)}
+                  disabled={!priceBrand}
+                  size={5}
+                  className="w-full border border-zinc-200 bg-white px-3 py-1 text-sm focus:outline-none focus:border-zinc-900 transition-colors disabled:opacity-40 mt-7"
                 >
-                  <option value="">Все узлы</option>
-                  {NODES.map(n => <option key={n}>{n}</option>)}
+                  <option value="">— Выберите модель —</option>
+                  {priceModels.map(m => <option key={m} value={m}>{m}</option>)}
                 </select>
+              </div>
+              <div>
+                <label className="block text-xs font-medium text-zinc-400 uppercase tracking-wider mb-2">
+                  {isCustomPrice ? (
+                    <span className="text-zinc-700">{priceBrand} {priceModel}</span>
+                  ) : "Цены для Volkswagen Jetta"}
+                </label>
+                <div className="mt-7 space-y-1">
+                  {isCustomPrice ? (
+                    <div className="p-3 bg-zinc-900 text-white text-sm">
+                      <p className="font-medium">Цены подобраны для вашего авто</p>
+                      <p className="text-zinc-400 text-xs mt-1">50 видов работ · 5 категорий</p>
+                    </div>
+                  ) : (
+                    <div className="p-3 bg-zinc-50 border border-zinc-200 text-sm text-zinc-500">
+                      Выберите марку и модель для точных цен по вашему автомобилю
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
 
             {/* Category tabs */}
             <div className="flex gap-px bg-zinc-100 mb-6 overflow-x-auto">
-              {PRICE_LIST.map(cat => (
+              {NODES_CATEGORIES.map(cat => (
                 <button
-                  key={cat.category}
-                  onClick={() => { setPriceCategory(cat.category); setSearchNode(""); }}
+                  key={cat}
+                  onClick={() => setPriceCategory(cat)}
                   className={`px-6 py-3 text-sm font-medium whitespace-nowrap transition-colors ${
-                    priceCategory === cat.category
-                      ? "bg-zinc-900 text-white"
-                      : "bg-white text-zinc-500 hover:text-zinc-900"
+                    priceCategory === cat ? "bg-zinc-900 text-white" : "bg-white text-zinc-500 hover:text-zinc-900"
                   }`}
                 >
-                  {cat.category}
+                  {cat}
                 </button>
               ))}
             </div>
 
+            {/* Price table */}
             <div className="border border-zinc-100">
               <div className="grid grid-cols-3 bg-zinc-900 text-white text-xs uppercase tracking-wider">
                 <div className="px-6 py-4">Наименование работы</div>
                 <div className="px-6 py-4 text-center">Время</div>
                 <div className="px-6 py-4 text-right">Стоимость</div>
               </div>
-              {PRICE_LIST.filter(c => !searchNode ? c.category === priceCategory : c.category === searchNode).map(cat =>
-                cat.items.map((item, i) => (
-                  <div key={i} className="grid grid-cols-3 border-t border-zinc-100 hover:bg-zinc-50 transition-colors">
-                    <div className="px-6 py-4 text-sm font-medium">{item.name}</div>
-                    <div className="px-6 py-4 text-sm text-zinc-500 text-center flex items-center justify-center gap-1.5">
-                      <Icon name="Clock" size={12} className="text-zinc-300" />
-                      {item.time}
-                    </div>
-                    <div className="px-6 py-4 text-sm font-semibold text-right">{item.price}</div>
+              {displayNodes.length > 0 ? displayNodes.map((node, i) => (
+                <div key={i} className="grid grid-cols-3 border-t border-zinc-100 hover:bg-zinc-50 transition-colors">
+                  <div className="px-6 py-4 text-sm font-medium">{node.name}</div>
+                  <div className="px-6 py-4 text-sm text-zinc-500 text-center flex items-center justify-center gap-1.5">
+                    <Icon name="Clock" size={12} className="text-zinc-300" />
+                    {node.time}
                   </div>
-                ))
+                  <div className="px-6 py-4 text-sm font-semibold text-right">
+                    {node.price[0].toLocaleString("ru")} – {node.price[1].toLocaleString("ru")} ₽
+                  </div>
+                </div>
+              )) : (
+                <div className="py-12 text-center text-zinc-400 text-sm">
+                  Выберите марку и модель для отображения цен
+                </div>
               )}
             </div>
 
-            {searchBrand && (
-              <div className="mt-4 p-4 bg-zinc-50 border border-zinc-100 flex items-center gap-3">
-                <Icon name="Info" size={15} className="text-zinc-400 flex-shrink-0" />
-                <p className="text-zinc-500 text-sm">
-                  Для <strong>{searchBrand}</strong> точную стоимость можно рассчитать в{" "}
-                  <button onClick={() => navigate("calc")} className="underline font-medium text-zinc-900">Калькуляторе</button>
-                </p>
-              </div>
-            )}
-            <p className="text-zinc-400 text-xs mt-4">* Стоимость зависит от марки и модели. Для точного расчёта воспользуйтесь калькулятором.</p>
+            <p className="text-zinc-400 text-xs mt-4">* Итоговая стоимость зависит от состояния автомобиля и комплектующих. Точный расчёт — после диагностики.</p>
           </div>
         )}
 
         {/* ======= CALCULATOR ======= */}
         {activeSection === "calc" && (
-          <div className="max-w-4xl mx-auto px-6 py-20">
+          <div className="max-w-5xl mx-auto px-6 py-20">
             <div className="mb-12">
               <p className="text-zinc-400 text-xs tracking-[0.25em] uppercase mb-3">Стоимость ремонта</p>
               <h1 className="text-5xl font-bold mb-3">Калькулятор</h1>
-              <p className="text-zinc-500 text-sm">Выберите параметры — получите предварительную стоимость</p>
+              <p className="text-zinc-500 text-sm">Выберите марку, модель и конкретный вид работы — получите цену</p>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-12">
-              <div className="space-y-6">
+            <div className="grid md:grid-cols-2 gap-10">
+              {/* Left: form */}
+              <div className="space-y-5">
                 <div>
-                  <label className="block text-xs font-medium uppercase tracking-wider mb-3 text-zinc-500">Марка автомобиля</label>
+                  <label className="block text-xs font-medium uppercase tracking-wider mb-2 text-zinc-500">
+                    Марка автомобиля
+                    <span className="ml-2 normal-case tracking-normal font-normal text-zinc-400">{ALL_BRANDS.length} доступно</span>
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="Начните вводить марку..."
+                    value={calcBrandSearch}
+                    onChange={e => setCalcBrandSearch(e.target.value)}
+                    className="w-full border-2 border-zinc-200 bg-white px-4 py-3 text-sm focus:outline-none focus:border-zinc-900 transition-colors mb-1"
+                  />
                   <select
                     value={calcBrand}
-                    onChange={e => { setCalcBrand(e.target.value); setCalcModel(""); setCalcResult(null); }}
-                    className="w-full border-2 border-zinc-200 bg-white px-4 py-4 text-sm focus:outline-none focus:border-zinc-900 transition-colors"
+                    onChange={e => { setCalcBrand(e.target.value); setCalcModel(""); setCalcNode(""); setCalcResult(null); }}
+                    size={4}
+                    className="w-full border-2 border-zinc-200 bg-white px-4 py-2 text-sm focus:outline-none focus:border-zinc-900 transition-colors"
                   >
-                    <option value="">Выберите марку</option>
-                    {brands.map(b => <option key={b}>{b}</option>)}
+                    <option value="">— Выберите марку —</option>
+                    {filteredCalcBrands.map(b => <option key={b} value={b}>{b}</option>)}
                   </select>
                 </div>
 
                 <div>
-                  <label className="block text-xs font-medium uppercase tracking-wider mb-3 text-zinc-500">Модель</label>
+                  <label className="block text-xs font-medium uppercase tracking-wider mb-2 text-zinc-500">Модель</label>
                   <select
                     value={calcModel}
-                    onChange={e => { setCalcModel(e.target.value); setCalcResult(null); }}
+                    onChange={e => { setCalcModel(e.target.value); setCalcNode(""); setCalcResult(null); }}
                     disabled={!calcBrand}
                     className="w-full border-2 border-zinc-200 bg-white px-4 py-4 text-sm focus:outline-none focus:border-zinc-900 transition-colors disabled:opacity-40"
                   >
@@ -443,46 +464,62 @@ export default function Index() {
                   </select>
                 </div>
 
-                <div>
-                  <label className="block text-xs font-medium uppercase tracking-wider mb-3 text-zinc-500">Узел ремонта</label>
-                  <div className="grid grid-cols-1 gap-2">
-                    {NODES.map(node => (
-                      <button
-                        key={node}
-                        onClick={() => { setCalcNode(node); setCalcResult(null); }}
-                        className={`flex items-center justify-between px-4 py-3 border-2 text-sm font-medium transition-all ${
-                          calcNode === node
-                            ? "border-zinc-900 bg-zinc-900 text-white"
-                            : "border-zinc-200 text-zinc-700 hover:border-zinc-400 bg-white"
-                        }`}
-                      >
-                        <span>{node}</span>
-                        {calcNode === node && <Icon name="Check" size={15} />}
-                      </button>
-                    ))}
+                {calcBrand && calcModel && (
+                  <div>
+                    <label className="block text-xs font-medium uppercase tracking-wider mb-2 text-zinc-500">
+                      Вид работы
+                      <span className="ml-2 normal-case tracking-normal font-normal text-zinc-400">50 позиций</span>
+                    </label>
+                    {NODES_CATEGORIES.map(cat => {
+                      const catNodes = getNodesForBrandModel(calcBrand, calcModel).filter(n => n.category === cat);
+                      return (
+                        <div key={cat} className="mb-3">
+                          <p className="text-xs text-zinc-400 uppercase tracking-wider mb-1.5 px-1">{cat}</p>
+                          <div className="space-y-1">
+                            {catNodes.map(node => (
+                              <button
+                                key={node.name}
+                                onClick={() => { setCalcNode(node.name); setCalcResult(null); }}
+                                className={`w-full flex items-center justify-between px-4 py-2.5 border text-sm transition-all text-left ${
+                                  calcNode === node.name
+                                    ? "border-zinc-900 bg-zinc-900 text-white"
+                                    : "border-zinc-200 text-zinc-700 hover:border-zinc-400 bg-white"
+                                }`}
+                              >
+                                <span>{node.name}</span>
+                                <span className={`text-xs ml-2 flex-shrink-0 ${calcNode === node.name ? "text-zinc-400" : "text-zinc-400"}`}>
+                                  {node.price[0].toLocaleString("ru")}–{node.price[1].toLocaleString("ru")} ₽
+                                </span>
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      );
+                    })}
                   </div>
-                </div>
+                )}
 
                 <button
                   onClick={handleCalc}
-                  disabled={!calcBrand || !calcNode}
+                  disabled={!calcBrand || !calcModel || !calcNode}
                   className="w-full bg-zinc-900 text-white py-4 font-semibold hover:bg-zinc-700 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
                 >
                   Рассчитать стоимость
                 </button>
               </div>
 
+              {/* Right: result */}
               <div className="flex flex-col">
                 {calcResult ? (
                   <div>
                     <div className="border-2 border-zinc-900 p-8 mb-4">
                       <p className="text-xs uppercase tracking-wider text-zinc-400 mb-5">Предварительная стоимость</p>
-                      <div className="mb-3">
-                        <span className="text-5xl font-bold">{calcResult[0].toLocaleString("ru")}</span>
+                      <div className="mb-1">
+                        <span className="text-4xl font-bold">{calcResult[0].toLocaleString("ru")}</span>
                         <span className="text-2xl font-bold text-zinc-400"> — {calcResult[1].toLocaleString("ru")} ₽</span>
                       </div>
-                      <p className="text-zinc-500 text-sm">
-                        {calcBrand}{calcModel ? ` · ${calcModel}` : ""} · {calcNode}
+                      <p className="text-zinc-500 text-sm mt-3 leading-relaxed">
+                        {calcBrand} {calcModel} · {calcNode}
                       </p>
                     </div>
                     <div className="bg-zinc-50 p-5 mb-4 space-y-2.5">
@@ -495,20 +532,25 @@ export default function Index() {
                       ))}
                       <p className="text-zinc-400 text-xs pt-1">* Запчасти рассчитываются отдельно при осмотре</p>
                     </div>
-                    <button
-                      onClick={() => navigate("contacts")}
-                      className="w-full border-2 border-zinc-900 py-4 font-semibold text-sm hover:bg-zinc-900 hover:text-white transition-all"
-                    >
+                    <button onClick={() => navigate("contacts")} className="w-full border-2 border-zinc-900 py-4 font-semibold text-sm hover:bg-zinc-900 hover:text-white transition-all">
                       Записаться на ремонт
                     </button>
                   </div>
                 ) : (
-                  <div className="flex-1 border-2 border-dashed border-zinc-200 flex flex-col items-center justify-center py-20 text-center">
-                    <div className="w-16 h-16 border-2 border-zinc-200 flex items-center justify-center mb-5">
-                      <Icon name="Calculator" size={26} className="text-zinc-300" />
+                  <div className="sticky top-24">
+                    <div className="border-2 border-dashed border-zinc-200 flex flex-col items-center justify-center py-16 text-center mb-6">
+                      <div className="w-16 h-16 border-2 border-zinc-200 flex items-center justify-center mb-5">
+                        <Icon name="Calculator" size={26} className="text-zinc-300" />
+                      </div>
+                      <p className="text-zinc-400 font-medium mb-1">Заполните форму слева</p>
+                      <p className="text-zinc-300 text-sm">Выберите марку, модель и вид работы</p>
                     </div>
-                    <p className="text-zinc-400 font-medium mb-1">Заполните форму</p>
-                    <p className="text-zinc-300 text-sm">Выберите марку, модель и узел</p>
+                    {calcBrand && !calcModel && (
+                      <div className="p-4 bg-zinc-50 border border-zinc-100 text-sm text-zinc-500">
+                        <p className="font-medium text-zinc-700 mb-1">{calcBrand}</p>
+                        <p>{calcModels.length} моделей доступно</p>
+                      </div>
+                    )}
                   </div>
                 )}
               </div>
@@ -561,9 +603,18 @@ export default function Index() {
                     <label className="block text-xs font-medium uppercase tracking-wider mb-2 text-zinc-500">Телефон</label>
                     <input type="tel" placeholder="+7 (___) ___-__-__" className="w-full border border-zinc-200 px-4 py-3 text-sm focus:outline-none focus:border-zinc-900 transition-colors" />
                   </div>
-                  <div>
-                    <label className="block text-xs font-medium uppercase tracking-wider mb-2 text-zinc-500">Марка и модель</label>
-                    <input type="text" placeholder="Например: BMW 5 серия 2020" className="w-full border border-zinc-200 px-4 py-3 text-sm focus:outline-none focus:border-zinc-900 transition-colors" />
+                  <div className="grid grid-cols-2 gap-3">
+                    <div>
+                      <label className="block text-xs font-medium uppercase tracking-wider mb-2 text-zinc-500">Марка</label>
+                      <select className="w-full border border-zinc-200 px-4 py-3 text-sm focus:outline-none focus:border-zinc-900 transition-colors">
+                        <option value="">Выберите</option>
+                        {ALL_BRANDS.map(b => <option key={b}>{b}</option>)}
+                      </select>
+                    </div>
+                    <div>
+                      <label className="block text-xs font-medium uppercase tracking-wider mb-2 text-zinc-500">Год</label>
+                      <input type="text" placeholder="2020" className="w-full border border-zinc-200 px-4 py-3 text-sm focus:outline-none focus:border-zinc-900 transition-colors" />
+                    </div>
                   </div>
                   <div>
                     <label className="block text-xs font-medium uppercase tracking-wider mb-2 text-zinc-500">Опишите проблему</label>
