@@ -10,7 +10,6 @@ import {
 const ABOUT_STATS = [
   { value: "17", label: "лет на рынке" },
   { value: "12 000+", label: "выполненных работ" },
-  { value: "48", label: "опытных мастеров" },
   { value: "98%", label: "довольных клиентов" },
 ];
 
@@ -643,7 +642,9 @@ export default function Index() {
               <p className="text-zinc-400 text-xs tracking-[0.25em] uppercase mb-3">
                 Услуги и цены
               </p>
-              <h1 className="text-4xl sm:text-5xl font-bold mb-3">Шиномонтаж</h1>
+              <h1 className="text-4xl sm:text-5xl font-bold mb-3">
+                Шиномонтаж
+              </h1>
               <p className="text-zinc-500 text-sm">
                 Работаем с легковыми автомобилями, кроссоверами и
                 внедорожниками. Шины R13–R22.
@@ -709,10 +710,24 @@ export default function Index() {
                   className="grid border-t border-zinc-100 hover:bg-zinc-50 transition-colors"
                   style={{ gridTemplateColumns: "1fr 140px 140px 140px" }}
                 >
-                  <div className="px-6 py-4 text-sm font-medium">{item.name}</div>
-                  <div className={`px-4 py-4 text-sm text-center font-medium ${item.r13_15 === "бесплатно" ? "text-emerald-600" : item.r13_15 === "—" ? "text-zinc-300" : "text-zinc-900"}`}>{item.r13_15}</div>
-                  <div className={`px-4 py-4 text-sm text-center font-medium ${item.r16_17 === "бесплатно" ? "text-emerald-600" : item.r16_17 === "—" ? "text-zinc-300" : "text-zinc-900"}`}>{item.r16_17}</div>
-                  <div className={`px-4 py-4 text-sm text-center font-medium ${item.r18_20 === "бесплатно" ? "text-emerald-600" : item.r18_20 === "—" ? "text-zinc-300" : "text-zinc-900"}`}>{item.r18_20}</div>
+                  <div className="px-6 py-4 text-sm font-medium">
+                    {item.name}
+                  </div>
+                  <div
+                    className={`px-4 py-4 text-sm text-center font-medium ${item.r13_15 === "бесплатно" ? "text-emerald-600" : item.r13_15 === "—" ? "text-zinc-300" : "text-zinc-900"}`}
+                  >
+                    {item.r13_15}
+                  </div>
+                  <div
+                    className={`px-4 py-4 text-sm text-center font-medium ${item.r16_17 === "бесплатно" ? "text-emerald-600" : item.r16_17 === "—" ? "text-zinc-300" : "text-zinc-900"}`}
+                  >
+                    {item.r16_17}
+                  </div>
+                  <div
+                    className={`px-4 py-4 text-sm text-center font-medium ${item.r18_20 === "бесплатно" ? "text-emerald-600" : item.r18_20 === "—" ? "text-zinc-300" : "text-zinc-900"}`}
+                  >
+                    {item.r18_20}
+                  </div>
                 </div>
               ))}
             </div>
@@ -721,16 +736,27 @@ export default function Index() {
             <div className="sm:hidden space-y-px border border-zinc-100 border-t-0">
               {TIRE_CATEGORIES[tireCategory].items.map((item, i) => (
                 <div key={i} className="bg-white p-4 border-t border-zinc-100">
-                  <p className="text-sm font-semibold mb-3 text-zinc-900">{item.name}</p>
+                  <p className="text-sm font-semibold mb-3 text-zinc-900">
+                    {item.name}
+                  </p>
                   <div className="grid grid-cols-3 gap-2">
                     {[
                       { label: "R13–R15", val: item.r13_15 },
                       { label: "R16–R17", val: item.r16_17 },
                       { label: "R18–R22", val: item.r18_20 },
                     ].map((col) => (
-                      <div key={col.label} className="bg-zinc-50 rounded px-2 py-2 text-center">
-                        <div className="text-[10px] text-zinc-400 uppercase tracking-wide mb-1">{col.label}</div>
-                        <div className={`text-sm font-semibold ${col.val === "бесплатно" ? "text-emerald-600 text-xs" : col.val === "—" ? "text-zinc-300" : "text-zinc-900"}`}>{col.val}</div>
+                      <div
+                        key={col.label}
+                        className="bg-zinc-50 rounded px-2 py-2 text-center"
+                      >
+                        <div className="text-[10px] text-zinc-400 uppercase tracking-wide mb-1">
+                          {col.label}
+                        </div>
+                        <div
+                          className={`text-sm font-semibold ${col.val === "бесплатно" ? "text-emerald-600 text-xs" : col.val === "—" ? "text-zinc-300" : "text-zinc-900"}`}
+                        >
+                          {col.val}
+                        </div>
                       </div>
                     ))}
                   </div>
@@ -783,7 +809,9 @@ export default function Index() {
               <p className="text-zinc-400 text-xs tracking-[0.25em] uppercase mb-3">
                 Стоимость ремонта
               </p>
-              <h1 className="text-4xl sm:text-5xl font-bold mb-3">Калькулятор</h1>
+              <h1 className="text-4xl sm:text-5xl font-bold mb-3">
+                Калькулятор
+              </h1>
               <p className="text-zinc-500 text-sm">
                 Выберите марку, модель и конкретный вид работы — получите цену
               </p>
