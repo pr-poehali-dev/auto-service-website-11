@@ -397,12 +397,12 @@ export default function Index() {
                   />
                 ))}
               </div>
-              <div className="max-w-6xl mx-auto px-6 relative z-10 py-28">
+              <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10 py-20 sm:py-28">
                 <div className="max-w-3xl">
                   <p className="text-zinc-500 text-xs tracking-[0.35em] uppercase mb-8">
                     Профессиональный автосервис
                   </p>
-                  <h1 className="text-white text-5xl md:text-[72px] font-bold leading-[1.04] mb-8">
+                  <h1 className="text-white text-4xl sm:text-5xl md:text-[72px] font-bold leading-[1.04] mb-8">
                     Ваш автомобиль
                     <br />
                     <span className="text-zinc-500">в надёжных</span>
@@ -446,12 +446,12 @@ export default function Index() {
             </section>
 
             <section className="border-b border-zinc-100">
-              <div className="max-w-6xl mx-auto px-6">
+              <div className="max-w-6xl mx-auto px-4 sm:px-6">
                 <div className="grid grid-cols-2 md:grid-cols-4">
                   {ABOUT_STATS.map((stat, i) => (
                     <div
                       key={i}
-                      className="py-12 px-6 border-r border-zinc-100 last:border-r-0 text-center"
+                      className="py-8 sm:py-12 px-4 sm:px-6 border-r border-zinc-100 last:border-r-0 text-center"
                     >
                       <div className="text-4xl font-bold mb-2">
                         {stat.value}
@@ -463,13 +463,13 @@ export default function Index() {
               </div>
             </section>
 
-            <section className="py-24 max-w-6xl mx-auto px-6">
-              <div className="flex items-end justify-between mb-14">
+            <section className="py-16 sm:py-24 max-w-6xl mx-auto px-4 sm:px-6">
+              <div className="flex items-end justify-between mb-10 sm:mb-14">
                 <div>
                   <p className="text-zinc-400 text-xs tracking-[0.25em] uppercase mb-3">
                     Что мы делаем
                   </p>
-                  <h2 className="text-4xl font-bold">Услуги</h2>
+                  <h2 className="text-3xl sm:text-4xl font-bold">Услуги</h2>
                 </div>
                 <button
                   onClick={() => navigate("tires")}
@@ -478,7 +478,7 @@ export default function Index() {
                   Шиномонтаж <Icon name="ArrowRight" size={15} />
                 </button>
               </div>
-              <div className="grid md:grid-cols-3 gap-px bg-zinc-100">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-px bg-zinc-100">
                 {[
                   {
                     icon: "Cog",
@@ -531,9 +531,9 @@ export default function Index() {
               </div>
             </section>
 
-            <section className="bg-zinc-900 py-24">
-              <div className="max-w-6xl mx-auto px-6 text-center">
-                <h2 className="text-white text-4xl font-bold mb-5">
+            <section className="bg-zinc-900 py-16 sm:py-24">
+              <div className="max-w-6xl mx-auto px-4 sm:px-6 text-center">
+                <h2 className="text-white text-2xl sm:text-4xl font-bold mb-5">
                   Нужна помощь с автомобилем?
                 </h2>
                 <p className="text-zinc-400 mb-10 max-w-lg mx-auto">
@@ -563,15 +563,15 @@ export default function Index() {
 
         {/* ======= ABOUT ======= */}
         {activeSection === "about" && (
-          <div className="max-w-6xl mx-auto px-6 py-20">
-            <div className="mb-16">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 py-14 sm:py-20">
+            <div className="mb-10 sm:mb-16">
               <p className="text-zinc-400 text-xs tracking-[0.25em] uppercase mb-3">
                 О нас
               </p>
-              <h1 className="text-5xl font-bold mb-6">О сервисе</h1>
+              <h1 className="text-4xl sm:text-5xl font-bold mb-6">О сервисе</h1>
               <div className="w-16 h-px bg-zinc-900" />
             </div>
-            <div className="grid md:grid-cols-2 gap-16 mb-24">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 sm:gap-16 mb-16 sm:mb-24">
               <div>
                 <h2 className="text-2xl font-semibold mb-6">
                   Профессиональный подход к каждому автомобилю
@@ -638,12 +638,12 @@ export default function Index() {
 
         {/* ======= ШИНОМОНТАЖ ======= */}
         {activeSection === "tires" && (
-          <div className="max-w-6xl mx-auto px-6 py-20">
-            <div className="mb-10">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 py-14 sm:py-20">
+            <div className="mb-8 sm:mb-10">
               <p className="text-zinc-400 text-xs tracking-[0.25em] uppercase mb-3">
                 Услуги и цены
               </p>
-              <h1 className="text-5xl font-bold mb-3">Шиномонтаж</h1>
+              <h1 className="text-4xl sm:text-5xl font-bold mb-3">Шиномонтаж</h1>
               <p className="text-zinc-500 text-sm">
                 Работаем с легковыми автомобилями, кроссоверами и
                 внедорожниками. Шины R13–R22.
@@ -692,9 +692,8 @@ export default function Index() {
               ))}
             </div>
 
-            {/* Table */}
-            <div className="border border-zinc-100 border-t-0">
-              {/* Header */}
+            {/* Table — desktop */}
+            <div className="hidden sm:block border border-zinc-100 border-t-0">
               <div
                 className="grid bg-zinc-900 text-white text-xs uppercase tracking-wider"
                 style={{ gridTemplateColumns: "1fr 140px 140px 140px" }}
@@ -704,30 +703,36 @@ export default function Index() {
                 <div className="px-4 py-4 text-center">R16–R17</div>
                 <div className="px-4 py-4 text-center">R18–R22</div>
               </div>
-
               {TIRE_CATEGORIES[tireCategory].items.map((item, i) => (
                 <div
                   key={i}
                   className="grid border-t border-zinc-100 hover:bg-zinc-50 transition-colors"
                   style={{ gridTemplateColumns: "1fr 140px 140px 140px" }}
                 >
-                  <div className="px-6 py-4 text-sm font-medium">
-                    {item.name}
-                  </div>
-                  <div
-                    className={`px-4 py-4 text-sm text-center font-medium ${item.r13_15 === "бесплатно" ? "text-emerald-600" : item.r13_15 === "—" ? "text-zinc-300" : "text-zinc-900"}`}
-                  >
-                    {item.r13_15}
-                  </div>
-                  <div
-                    className={`px-4 py-4 text-sm text-center font-medium ${item.r16_17 === "бесплатно" ? "text-emerald-600" : item.r16_17 === "—" ? "text-zinc-300" : "text-zinc-900"}`}
-                  >
-                    {item.r16_17}
-                  </div>
-                  <div
-                    className={`px-4 py-4 text-sm text-center font-medium ${item.r18_20 === "бесплатно" ? "text-emerald-600" : item.r18_20 === "—" ? "text-zinc-300" : "text-zinc-900"}`}
-                  >
-                    {item.r18_20}
+                  <div className="px-6 py-4 text-sm font-medium">{item.name}</div>
+                  <div className={`px-4 py-4 text-sm text-center font-medium ${item.r13_15 === "бесплатно" ? "text-emerald-600" : item.r13_15 === "—" ? "text-zinc-300" : "text-zinc-900"}`}>{item.r13_15}</div>
+                  <div className={`px-4 py-4 text-sm text-center font-medium ${item.r16_17 === "бесплатно" ? "text-emerald-600" : item.r16_17 === "—" ? "text-zinc-300" : "text-zinc-900"}`}>{item.r16_17}</div>
+                  <div className={`px-4 py-4 text-sm text-center font-medium ${item.r18_20 === "бесплатно" ? "text-emerald-600" : item.r18_20 === "—" ? "text-zinc-300" : "text-zinc-900"}`}>{item.r18_20}</div>
+                </div>
+              ))}
+            </div>
+
+            {/* Cards — mobile */}
+            <div className="sm:hidden space-y-px border border-zinc-100 border-t-0">
+              {TIRE_CATEGORIES[tireCategory].items.map((item, i) => (
+                <div key={i} className="bg-white p-4 border-t border-zinc-100">
+                  <p className="text-sm font-semibold mb-3 text-zinc-900">{item.name}</p>
+                  <div className="grid grid-cols-3 gap-2">
+                    {[
+                      { label: "R13–R15", val: item.r13_15 },
+                      { label: "R16–R17", val: item.r16_17 },
+                      { label: "R18–R22", val: item.r18_20 },
+                    ].map((col) => (
+                      <div key={col.label} className="bg-zinc-50 rounded px-2 py-2 text-center">
+                        <div className="text-[10px] text-zinc-400 uppercase tracking-wide mb-1">{col.label}</div>
+                        <div className={`text-sm font-semibold ${col.val === "бесплатно" ? "text-emerald-600 text-xs" : col.val === "—" ? "text-zinc-300" : "text-zinc-900"}`}>{col.val}</div>
+                      </div>
+                    ))}
                   </div>
                 </div>
               ))}
@@ -739,7 +744,7 @@ export default function Index() {
             </p>
 
             {/* Bottom promo */}
-            <div className="mt-12 grid md:grid-cols-3 gap-px bg-zinc-100">
+            <div className="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-px bg-zinc-100">
               {[
                 {
                   icon: "Percent",
@@ -773,18 +778,18 @@ export default function Index() {
 
         {/* ======= CALCULATOR ======= */}
         {activeSection === "calc" && (
-          <div className="max-w-5xl mx-auto px-6 py-20">
-            <div className="mb-12">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 py-14 sm:py-20">
+            <div className="mb-8 sm:mb-12">
               <p className="text-zinc-400 text-xs tracking-[0.25em] uppercase mb-3">
                 Стоимость ремонта
               </p>
-              <h1 className="text-5xl font-bold mb-3">Калькулятор</h1>
+              <h1 className="text-4xl sm:text-5xl font-bold mb-3">Калькулятор</h1>
               <p className="text-zinc-500 text-sm">
                 Выберите марку, модель и конкретный вид работы — получите цену
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
               {/* Left: form */}
               <div className="space-y-5">
                 <div>
@@ -984,7 +989,7 @@ export default function Index() {
               {/* Right: result */}
               <div className="flex flex-col">
                 {selectedWorks.length > 0 ? (
-                  <div className="sticky top-24">
+                  <div className="md:sticky md:top-24">
                     {/* Selected works list */}
                     <div className="border-2 border-zinc-900 p-6 mb-4">
                       <p className="text-xs uppercase tracking-wider text-zinc-400 mb-4">
@@ -1072,7 +1077,7 @@ export default function Index() {
                     </button>
                   </div>
                 ) : (
-                  <div className="sticky top-24">
+                  <div className="md:sticky md:top-24">
                     <div className="border-2 border-dashed border-zinc-200 flex flex-col items-center justify-center py-16 text-center mb-6">
                       <div className="w-16 h-16 border-2 border-zinc-200 flex items-center justify-center mb-5">
                         <Icon
@@ -1106,16 +1111,16 @@ export default function Index() {
 
         {/* ======= CONTACTS ======= */}
         {activeSection === "contacts" && (
-          <div className="max-w-6xl mx-auto px-6 py-20">
-            <div className="mb-12">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 py-14 sm:py-20">
+            <div className="mb-8 sm:mb-12">
               <p className="text-zinc-400 text-xs tracking-[0.25em] uppercase mb-3">
                 Свяжитесь с нами
               </p>
-              <h1 className="text-5xl font-bold mb-4">Контакты</h1>
+              <h1 className="text-4xl sm:text-5xl font-bold mb-4">Контакты</h1>
               <div className="w-16 h-px bg-zinc-900" />
             </div>
 
-            <div className="grid md:grid-cols-2 gap-16">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16">
               <div>
                 <div className="space-y-px mb-8">
                   {CONTACTS.map((c, i) => (
@@ -1218,8 +1223,8 @@ export default function Index() {
       </main>
 
       {/* FOOTER */}
-      <footer className="border-t border-zinc-100 py-10 mt-16">
-        <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+      <footer className="border-t border-zinc-100 py-8 sm:py-10 mt-12 sm:mt-16">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
             <div className="w-6 h-6 bg-zinc-900 flex items-center justify-center">
               <Icon name="Wrench" size={11} className="text-white" />
@@ -1228,10 +1233,10 @@ export default function Index() {
               АвтоСервис
             </span>
           </div>
-          <p className="text-zinc-400 text-sm">
+          <p className="text-zinc-400 text-sm text-center">
             © 2007 – 2026. Все права защищены.
           </p>
-          <div className="flex gap-5">
+          <div className="flex flex-wrap justify-center gap-4 sm:gap-5">
             {navItems.slice(1).map((item) => (
               <button
                 key={item.id}
