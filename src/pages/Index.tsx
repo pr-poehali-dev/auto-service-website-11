@@ -95,6 +95,7 @@ export default function Index() {
   const [calcResult, setCalcResult] = useState<[number, number] | null>(null);
   const [calcBrandSearch, setCalcBrandSearch] = useState("");
   const [calcActiveCategory, setCalcActiveCategory] = useState(NODES_CATEGORIES[0]);
+  const [workSearch, setWorkSearch] = useState("");
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -122,8 +123,12 @@ export default function Index() {
 
   const currentCatNodes = useMemo(() => {
     if (!calcBrand || !calcModel) return [];
-    return getNodesForBrandModel(calcBrand, calcModel).filter(n => n.category === calcActiveCategory);
-  }, [calcBrand, calcModel, calcActiveCategory]);
+    const all = getNodesForBrandModel(calcBrand, calcModel);
+    if (workSearch.trim()) {
+      return all.filter(n => n.name.toLowerCase().includes(workSearch.toLowerCase()));
+    }
+    return all.filter(n => n.category === calcActiveCategory);
+  }, [calcBrand, calcModel, calcActiveCategory, workSearch]);
 
   return (
     <div className="min-h-screen bg-white font-golos text-zinc-900">
@@ -212,7 +217,7 @@ export default function Index() {
                   </p>
                   <div className="flex flex-wrap gap-3 mb-10">
                     <span className="text-zinc-600 text-sm border border-zinc-700 px-3 py-1">{ALL_BRANDS.length}+ марок</span>
-                    <span className="text-zinc-600 text-sm border border-zinc-700 px-3 py-1">50 видов работ</span>
+                    <span className="text-zinc-600 text-sm border border-zinc-700 px-3 py-1">80+ видов работ</span>
                     <span className="text-zinc-600 text-sm border border-zinc-700 px-3 py-1">Шиномонтаж R13–R22</span>
                     <span className="text-zinc-600 text-sm border border-zinc-700 px-3 py-1">Гарантия 12 мес.</span>
                   </div>
@@ -477,24 +482,56 @@ export default function Index() {
                   <div>
                     <label className="block text-xs font-medium uppercase tracking-wider mb-3 text-zinc-500">
                       Вид работы
-                      <span className="ml-2 normal-case tracking-normal font-normal text-zinc-400">50 позиций</span>
+                      <span className="ml-2 normal-case tracking-normal font-normal text-zinc-400">{getNodesForBrandModel(calcBrand, calcModel).length} позиций</span>
                     </label>
-                    {/* Category tabs for works */}
-                    <div className="flex gap-px bg-zinc-100 mb-3 overflow-x-auto">
-                      {NODES_CATEGORIES.map(cat => (
+
+                    {/* Work search */}
+                    <div className="relative mb-3">
+                      <div className="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none">
+                        <Icon name="Search" size={14} className="text-zinc-400" />
+                      </div>
+                      <input
+                        type="text"
+                        placeholder="Поиск по виду работы..."
+                        value={workSearch}
+                        onChange={e => { setWorkSearch(e.target.value); setCalcActiveCategory(NODES_CATEGORIES[0]); }}
+                        className="w-full border-2 border-zinc-200 bg-white pl-9 pr-4 py-2.5 text-sm focus:outline-none focus:border-zinc-900 transition-colors"
+                      />
+                      {workSearch && (
                         <button
-                          key={cat}
-                          onClick={() => setCalcActiveCategory(cat)}
-                          className={`px-4 py-2 text-xs font-medium whitespace-nowrap transition-colors ${
-                            calcActiveCategory === cat ? "bg-zinc-900 text-white" : "bg-white text-zinc-500 hover:text-zinc-900"
-                          }`}
+                          onClick={() => setWorkSearch("")}
+                          className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-900"
                         >
-                          {cat}
+                          <Icon name="X" size={14} />
                         </button>
-                      ))}
+                      )}
                     </div>
-                    <div className="space-y-1">
-                      {currentCatNodes.map(node => (
+
+                    {/* Category tabs — скрываем при активном поиске */}
+                    {!workSearch && (
+                      <div className="flex gap-px bg-zinc-100 mb-3 overflow-x-auto">
+                        {NODES_CATEGORIES.map(cat => (
+                          <button
+                            key={cat}
+                            onClick={() => setCalcActiveCategory(cat)}
+                            className={`px-4 py-2 text-xs font-medium whitespace-nowrap transition-colors ${
+                              calcActiveCategory === cat ? "bg-zinc-900 text-white" : "bg-white text-zinc-500 hover:text-zinc-900"
+                            }`}
+                          >
+                            {cat}
+                          </button>
+                        ))}
+                      </div>
+                    )}
+
+                    {workSearch && (
+                      <p className="text-xs text-zinc-400 mb-2 px-1">
+                        Найдено: {currentCatNodes.length} {currentCatNodes.length === 0 ? "работ" : "работ"}
+                      </p>
+                    )}
+
+                    <div className="space-y-1 max-h-72 overflow-y-auto pr-1">
+                      {currentCatNodes.length > 0 ? currentCatNodes.map(node => (
                         <button
                           key={node.name}
                           onClick={() => { setCalcNode(node.name); setCalcResult(null); }}
@@ -504,12 +541,32 @@ export default function Index() {
                               : "border-zinc-200 text-zinc-700 hover:border-zinc-400 bg-white"
                           }`}
                         >
-                          <span>{node.name}</span>
-                          <span className="text-xs ml-2 flex-shrink-0 text-zinc-400">
+                          <span className="flex-1 min-w-0 pr-2">
+                            {workSearch ? (
+                              // Подсветка найденного текста
+                              (() => {
+                                const idx = node.name.toLowerCase().indexOf(workSearch.toLowerCase());
+                                if (idx === -1) return node.name;
+                                return <>
+                                  {node.name.slice(0, idx)}
+                                  <mark className={`${calcNode === node.name ? "bg-zinc-700 text-white" : "bg-yellow-100 text-zinc-900"} rounded-sm px-0.5`}>
+                                    {node.name.slice(idx, idx + workSearch.length)}
+                                  </mark>
+                                  {node.name.slice(idx + workSearch.length)}
+                                </>;
+                              })()
+                            ) : node.name}
+                          </span>
+                          <span className={`text-xs flex-shrink-0 ${calcNode === node.name ? "text-zinc-400" : "text-zinc-400"}`}>
                             {node.price[0].toLocaleString("ru")}–{node.price[1].toLocaleString("ru")} ₽
                           </span>
                         </button>
-                      ))}
+                      )) : (
+                        <div className="py-8 text-center text-zinc-400 text-sm border-2 border-dashed border-zinc-200">
+                          <Icon name="SearchX" size={22} className="mx-auto mb-2 text-zinc-300" />
+                          Ничего не найдено по запросу «{workSearch}»
+                        </div>
+                      )}
                     </div>
                   </div>
                 )}
