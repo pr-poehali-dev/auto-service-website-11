@@ -15,10 +15,10 @@ const ABOUT_STATS = [
 ];
 
 const CONTACTS = [
-  { icon: "MapPin", label: "Адрес", value: "г. Москва, ул. Промышленная, 42" },
-  { icon: "Phone", label: "Телефон", value: "+7 (495) 123-45-67" },
-  { icon: "Mail", label: "Email", value: "info@autoservice.ru" },
-  { icon: "Clock", label: "Часы работы", value: "Пн–Вс: 8:00 – 21:00" },
+  { icon: "MapPin", label: "Адрес", value: "территория Микрорайон, 9А, деревня Гряды, Волоколамский муниципальный округ, Московская область, 143650" },
+  { icon: "Phone", label: "Телефон", value: "+7 (910) 444-11-49" },
+  { icon: "Phone", label: "Телефон 2", value: "+7 (985) 491-25-26" },
+  { icon: "Clock", label: "Часы работы", value: "Пн–Вс: 9:00 – 18:00" },
 ];
 
 // Шиномонтаж данные
@@ -87,15 +87,18 @@ export default function Index() {
   const [activeSection, setActiveSection] = useState("home");
   const [menuOpen, setMenuOpen] = useState(false);
   const [tireCategory, setTireCategory] = useState(0);
+  const [cookieAccepted, setCookieAccepted] = useState(() => {
+    return localStorage.getItem("cookie_accepted") === "1";
+  });
 
   // Calculator state
   const [calcBrand, setCalcBrand] = useState("");
-  const [calcModel, setCalcModel] = useState("");
-  const [calcNode, setCalcNode] = useState("");
-  const [calcResult, setCalcResult] = useState<[number, number] | null>(null);
+  const [calcModel, setCalcModel] = useState<string>("");
   const [calcBrandSearch, setCalcBrandSearch] = useState("");
   const [calcActiveCategory, setCalcActiveCategory] = useState(NODES_CATEGORIES[0]);
   const [workSearch, setWorkSearch] = useState("");
+  // Мультивыбор работ: { name, price }[]
+  const [selectedWorks, setSelectedWorks] = useState<{ name: string; price: [number, number] }[]>([]);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -113,14 +116,6 @@ export default function Index() {
 
   const calcModels = useMemo(() => calcBrand ? getModelsForBrand(calcBrand) : [], [calcBrand]);
 
-  const handleCalc = () => {
-    if (calcBrand && calcModel && calcNode) {
-      const nodes = getNodesForBrandModel(calcBrand, calcModel);
-      const found = nodes.find(n => n.name === calcNode);
-      if (found) setCalcResult(found.price);
-    }
-  };
-
   const currentCatNodes = useMemo(() => {
     if (!calcBrand || !calcModel) return [];
     const all = getNodesForBrandModel(calcBrand, calcModel);
@@ -130,8 +125,46 @@ export default function Index() {
     return all.filter(n => n.category === calcActiveCategory);
   }, [calcBrand, calcModel, calcActiveCategory, workSearch]);
 
+  const toggleWork = (name: string, price: [number, number]) => {
+    setSelectedWorks(prev => {
+      const exists = prev.find(w => w.name === name);
+      if (exists) return prev.filter(w => w.name !== name);
+      return [...prev, { name, price }];
+    });
+  };
+
+  const totalMin = selectedWorks.reduce((s, w) => s + w.price[0], 0);
+  const totalMax = selectedWorks.reduce((s, w) => s + w.price[1], 0);
+
+  const acceptCookie = () => {
+    localStorage.setItem("cookie_accepted", "1");
+    setCookieAccepted(true);
+  };
+
   return (
     <div className="min-h-screen bg-white font-golos text-zinc-900">
+      {/* COOKIE BANNER */}
+      {!cookieAccepted && (
+        <div className="fixed bottom-0 left-0 right-0 z-50 bg-zinc-900 text-white px-6 py-4 shadow-2xl">
+          <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div className="flex items-start gap-3 flex-1">
+              <Icon name="Cookie" size={18} className="text-zinc-400 flex-shrink-0 mt-0.5" />
+              <p className="text-sm text-zinc-300 leading-relaxed">
+                Мы используем файлы cookie для улучшения работы сайта и анализа посещаемости.
+                Продолжая использовать сайт, вы соглашаетесь с нашей{" "}
+                <span className="underline cursor-pointer text-zinc-200">политикой конфиденциальности</span>.
+              </p>
+            </div>
+            <button
+              onClick={acceptCookie}
+              className="flex-shrink-0 bg-white text-zinc-900 px-5 py-2 text-sm font-semibold hover:bg-zinc-100 transition-colors"
+            >
+              Принять
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* HEADER */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur border-b border-zinc-100">
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
@@ -158,11 +191,11 @@ export default function Index() {
 
           <div className="flex items-center gap-3">
             <a
-              href="tel:+74951234567"
+              href="tel:+79104441149"
               className="hidden md:flex items-center gap-2 bg-zinc-900 text-white px-5 py-2 text-sm font-medium hover:bg-zinc-700 transition-colors"
             >
               <Icon name="Phone" size={13} />
-              Позвонить
+              +7 (910) 444-11-49
             </a>
             <button className="md:hidden p-2" onClick={() => setMenuOpen(!menuOpen)}>
               <Icon name={menuOpen ? "X" : "Menu"} size={20} />
@@ -213,7 +246,7 @@ export default function Index() {
                     руках
                   </h1>
                   <p className="text-zinc-400 text-lg max-w-xl mb-12 leading-relaxed">
-                    Ремонт, обслуживание и шиномонтаж любых марок. 17 лет опыта, 48 мастеров, гарантия на все работы.
+                    Ремонт, обслуживание и шиномонтаж любых марок. 17 лет опыта, 48 мастеров, гарантия на все работы. Работаем Пн–Вс 9:00–18:00.
                   </p>
                   <div className="flex flex-wrap gap-3 mb-10">
                     <span className="text-zinc-600 text-sm border border-zinc-700 px-3 py-1">{ALL_BRANDS.length}+ марок</span>
@@ -280,10 +313,16 @@ export default function Index() {
               <div className="max-w-6xl mx-auto px-6 text-center">
                 <h2 className="text-white text-4xl font-bold mb-5">Нужна помощь с автомобилем?</h2>
                 <p className="text-zinc-400 mb-10 max-w-lg mx-auto">Позвоните нам — мастер проконсультирует бесплатно и ответит на любые вопросы</p>
-                <a href="tel:+74951234567" className="inline-flex items-center gap-3 bg-white text-zinc-900 px-10 py-4 font-semibold hover:bg-zinc-100 transition-colors">
-                  <Icon name="Phone" size={18} />
-                  +7 (495) 123-45-67
-                </a>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <a href="tel:+79104441149" className="inline-flex items-center gap-3 bg-white text-zinc-900 px-8 py-4 font-semibold hover:bg-zinc-100 transition-colors">
+                    <Icon name="Phone" size={18} />
+                    +7 (910) 444-11-49
+                  </a>
+                  <a href="tel:+79854912526" className="inline-flex items-center gap-3 border border-zinc-600 text-white px-8 py-4 font-semibold hover:border-zinc-300 transition-colors">
+                    <Icon name="Phone" size={18} />
+                    +7 (985) 491-25-26
+                  </a>
+                </div>
               </div>
             </section>
           </div>
@@ -456,7 +495,7 @@ export default function Index() {
                   />
                   <select
                     value={calcBrand}
-                    onChange={e => { setCalcBrand(e.target.value); setCalcModel(""); setCalcNode(""); setCalcResult(null); }}
+                    onChange={e => { setCalcBrand(e.target.value); setCalcModel(""); setSelectedWorks([]); }}
                     size={4}
                     className="w-full border-2 border-zinc-200 bg-white px-4 py-2 text-sm focus:outline-none focus:border-zinc-900 transition-colors"
                   >
@@ -469,7 +508,7 @@ export default function Index() {
                   <label className="block text-xs font-medium uppercase tracking-wider mb-2 text-zinc-500">Модель</label>
                   <select
                     value={calcModel}
-                    onChange={e => { setCalcModel(e.target.value); setCalcNode(""); setCalcResult(null); }}
+                    onChange={e => { setCalcModel(e.target.value); setSelectedWorks([]); }}
                     disabled={!calcBrand}
                     className="w-full border-2 border-zinc-200 bg-white px-4 py-4 text-sm focus:outline-none focus:border-zinc-900 transition-colors disabled:opacity-40"
                   >
@@ -481,8 +520,8 @@ export default function Index() {
                 {calcBrand && calcModel && (
                   <div>
                     <label className="block text-xs font-medium uppercase tracking-wider mb-3 text-zinc-500">
-                      Вид работы
-                      <span className="ml-2 normal-case tracking-normal font-normal text-zinc-400">{getNodesForBrandModel(calcBrand, calcModel).length} позиций</span>
+                      Виды работ
+                      <span className="ml-2 normal-case tracking-normal font-normal text-zinc-400">{getNodesForBrandModel(calcBrand, calcModel).length} позиций · можно выбрать несколько</span>
                     </label>
 
                     {/* Work search */}
@@ -507,14 +546,14 @@ export default function Index() {
                       )}
                     </div>
 
-                    {/* Category tabs — скрываем при активном поиске */}
+                    {/* Category tabs */}
                     {!workSearch && (
                       <div className="flex gap-px bg-zinc-100 mb-3 overflow-x-auto">
                         {NODES_CATEGORIES.map(cat => (
                           <button
                             key={cat}
                             onClick={() => setCalcActiveCategory(cat)}
-                            className={`px-4 py-2 text-xs font-medium whitespace-nowrap transition-colors ${
+                            className={`px-3 py-2 text-xs font-medium whitespace-nowrap transition-colors ${
                               calcActiveCategory === cat ? "bg-zinc-900 text-white" : "bg-white text-zinc-500 hover:text-zinc-900"
                             }`}
                           >
@@ -525,43 +564,40 @@ export default function Index() {
                     )}
 
                     {workSearch && (
-                      <p className="text-xs text-zinc-400 mb-2 px-1">
-                        Найдено: {currentCatNodes.length} {currentCatNodes.length === 0 ? "работ" : "работ"}
-                      </p>
+                      <p className="text-xs text-zinc-400 mb-2 px-1">Найдено: {currentCatNodes.length}</p>
                     )}
 
-                    <div className="space-y-1 max-h-72 overflow-y-auto pr-1">
-                      {currentCatNodes.length > 0 ? currentCatNodes.map(node => (
-                        <button
-                          key={node.name}
-                          onClick={() => { setCalcNode(node.name); setCalcResult(null); }}
-                          className={`w-full flex items-center justify-between px-4 py-2.5 border text-sm transition-all text-left ${
-                            calcNode === node.name
-                              ? "border-zinc-900 bg-zinc-900 text-white"
-                              : "border-zinc-200 text-zinc-700 hover:border-zinc-400 bg-white"
-                          }`}
-                        >
-                          <span className="flex-1 min-w-0 pr-2">
-                            {workSearch ? (
-                              // Подсветка найденного текста
-                              (() => {
+                    <div className="space-y-1 max-h-64 overflow-y-auto pr-1">
+                      {currentCatNodes.length > 0 ? currentCatNodes.map(node => {
+                        const isSelected = selectedWorks.some(w => w.name === node.name);
+                        return (
+                          <button
+                            key={node.name}
+                            onClick={() => toggleWork(node.name, node.price)}
+                            className={`w-full flex items-center gap-3 px-4 py-2.5 border text-sm transition-all text-left ${
+                              isSelected
+                                ? "border-zinc-900 bg-zinc-900 text-white"
+                                : "border-zinc-200 text-zinc-700 hover:border-zinc-400 bg-white"
+                            }`}
+                          >
+                            <div className={`w-4 h-4 flex-shrink-0 border flex items-center justify-center ${
+                              isSelected ? "bg-white border-white" : "border-zinc-400"
+                            }`}>
+                              {isSelected && <Icon name="Check" size={10} className="text-zinc-900" />}
+                            </div>
+                            <span className="flex-1 min-w-0 pr-2">
+                              {workSearch ? (() => {
                                 const idx = node.name.toLowerCase().indexOf(workSearch.toLowerCase());
                                 if (idx === -1) return node.name;
-                                return <>
-                                  {node.name.slice(0, idx)}
-                                  <mark className={`${calcNode === node.name ? "bg-zinc-700 text-white" : "bg-yellow-100 text-zinc-900"} rounded-sm px-0.5`}>
-                                    {node.name.slice(idx, idx + workSearch.length)}
-                                  </mark>
-                                  {node.name.slice(idx + workSearch.length)}
-                                </>;
-                              })()
-                            ) : node.name}
-                          </span>
-                          <span className={`text-xs flex-shrink-0 ${calcNode === node.name ? "text-zinc-400" : "text-zinc-400"}`}>
-                            {node.price[0].toLocaleString("ru")}–{node.price[1].toLocaleString("ru")} ₽
-                          </span>
-                        </button>
-                      )) : (
+                                return <>{node.name.slice(0, idx)}<mark className="bg-yellow-100 text-zinc-900 rounded-sm px-0.5">{node.name.slice(idx, idx + workSearch.length)}</mark>{node.name.slice(idx + workSearch.length)}</>;
+                              })() : node.name}
+                            </span>
+                            <span className="text-xs flex-shrink-0 opacity-70">
+                              {node.price[0].toLocaleString("ru")}–{node.price[1].toLocaleString("ru")} ₽
+                            </span>
+                          </button>
+                        );
+                      }) : (
                         <div className="py-8 text-center text-zinc-400 text-sm border-2 border-dashed border-zinc-200">
                           <Icon name="SearchX" size={22} className="mx-auto mb-2 text-zinc-300" />
                           Ничего не найдено по запросу «{workSearch}»
@@ -570,44 +606,62 @@ export default function Index() {
                     </div>
                   </div>
                 )}
-
-                <button
-                  onClick={handleCalc}
-                  disabled={!calcBrand || !calcModel || !calcNode}
-                  className="w-full bg-zinc-900 text-white py-4 font-semibold hover:bg-zinc-700 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
-                >
-                  Рассчитать стоимость
-                </button>
               </div>
 
               {/* Right: result */}
               <div className="flex flex-col">
-                {calcResult ? (
-                  <div>
-                    <div className="border-2 border-zinc-900 p-8 mb-4">
-                      <p className="text-xs uppercase tracking-wider text-zinc-400 mb-5">Предварительная стоимость</p>
-                      <div className="mb-1">
-                        <span className="text-4xl font-bold">{calcResult[0].toLocaleString("ru")}</span>
-                        <span className="text-2xl font-bold text-zinc-400"> — {calcResult[1].toLocaleString("ru")} ₽</span>
+                {selectedWorks.length > 0 ? (
+                  <div className="sticky top-24">
+                    {/* Selected works list */}
+                    <div className="border-2 border-zinc-900 p-6 mb-4">
+                      <p className="text-xs uppercase tracking-wider text-zinc-400 mb-4">Выбранные работы</p>
+                      <div className="space-y-2 mb-5 max-h-48 overflow-y-auto pr-1">
+                        {selectedWorks.map(w => (
+                          <div key={w.name} className="flex items-start justify-between gap-2 text-sm">
+                            <button
+                              onClick={() => toggleWork(w.name, w.price)}
+                              className="text-zinc-400 hover:text-zinc-900 flex-shrink-0 mt-0.5"
+                            >
+                              <Icon name="X" size={12} />
+                            </button>
+                            <span className="flex-1 text-zinc-700 leading-tight">{w.name}</span>
+                            <span className="text-zinc-500 text-xs flex-shrink-0 whitespace-nowrap">
+                              {w.price[0].toLocaleString("ru")}–{w.price[1].toLocaleString("ru")} ₽
+                            </span>
+                          </div>
+                        ))}
                       </div>
-                      <p className="text-zinc-500 text-sm mt-3 leading-relaxed">
-                        {calcBrand} {calcModel} · {calcNode}
-                      </p>
+                      <div className="border-t border-zinc-200 pt-4">
+                        <p className="text-xs uppercase tracking-wider text-zinc-400 mb-2">Итоговая стоимость</p>
+                        <div>
+                          <span className="text-3xl font-bold">{totalMin.toLocaleString("ru")}</span>
+                          <span className="text-xl font-bold text-zinc-400"> — {totalMax.toLocaleString("ru")} ₽</span>
+                        </div>
+                        <p className="text-zinc-400 text-xs mt-2">{calcBrand} {calcModel} · {selectedWorks.length} {selectedWorks.length === 1 ? "работа" : selectedWorks.length < 5 ? "работы" : "работ"}</p>
+                      </div>
                     </div>
-                    <div className="bg-zinc-50 p-5 mb-4 space-y-2.5">
-                      <p className="text-sm font-medium mb-3">Что входит:</p>
-                      {["Диагностика и дефектовка", "Стоимость работ мастера", "Гарантия 12 месяцев"].map((item, i) => (
+                    <div className="bg-zinc-50 p-4 mb-4 space-y-2">
+                      {["Стоимость указана за работу", "Запчасти — отдельно при осмотре", "Гарантия 12 месяцев на все работы"].map((item, i) => (
                         <div key={i} className="flex items-center gap-3 text-sm text-zinc-600">
                           <div className="w-1.5 h-1.5 bg-zinc-900 flex-shrink-0" />
                           {item}
                         </div>
                       ))}
-                      <p className="text-zinc-400 text-xs pt-1">* Запчасти рассчитываются отдельно при осмотре</p>
                     </div>
-                    <a href="tel:+74951234567" className="w-full border-2 border-zinc-900 py-4 font-semibold text-sm hover:bg-zinc-900 hover:text-white transition-all flex items-center justify-center gap-2">
+                    <a href="tel:+79104441149" className="w-full border-2 border-zinc-900 py-3 font-semibold text-sm hover:bg-zinc-900 hover:text-white transition-all flex items-center justify-center gap-2 mb-2">
                       <Icon name="Phone" size={15} />
-                      Позвонить и уточнить
+                      +7 (910) 444-11-49
                     </a>
+                    <a href="tel:+79854912526" className="w-full border border-zinc-300 py-3 font-medium text-sm hover:border-zinc-900 transition-all flex items-center justify-center gap-2 text-zinc-600">
+                      <Icon name="Phone" size={14} />
+                      +7 (985) 491-25-26
+                    </a>
+                    <button
+                      onClick={() => setSelectedWorks([])}
+                      className="w-full mt-3 text-xs text-zinc-400 hover:text-zinc-900 transition-colors py-1"
+                    >
+                      Очистить список
+                    </button>
                   </div>
                 ) : (
                   <div className="sticky top-24">
@@ -615,8 +669,8 @@ export default function Index() {
                       <div className="w-16 h-16 border-2 border-zinc-200 flex items-center justify-center mb-5">
                         <Icon name="Calculator" size={26} className="text-zinc-300" />
                       </div>
-                      <p className="text-zinc-400 font-medium mb-1">Заполните форму слева</p>
-                      <p className="text-zinc-300 text-sm">Выберите марку, модель и вид работы</p>
+                      <p className="text-zinc-400 font-medium mb-1">Выберите работы слева</p>
+                      <p className="text-zinc-300 text-sm">Можно выбрать несколько — сумма посчитается автоматически</p>
                     </div>
                     {calcBrand && !calcModel && (
                       <div className="p-4 bg-zinc-50 border border-zinc-100 text-sm text-zinc-500">
@@ -650,7 +704,13 @@ export default function Index() {
                       </div>
                       <div>
                         <p className="text-xs uppercase tracking-wider text-zinc-400 mb-1">{c.label}</p>
-                        <p className="font-medium">{c.value}</p>
+                        {c.icon === "Phone" ? (
+                          <a href={`tel:+${c.value.replace(/\D/g, "")}`} className="font-medium hover:text-zinc-600 transition-colors">
+                            {c.value}
+                          </a>
+                        ) : (
+                          <p className="font-medium">{c.value}</p>
+                        )}
                       </div>
                     </div>
                   ))}
@@ -658,28 +718,38 @@ export default function Index() {
                 <div className="bg-zinc-900 text-white p-6">
                   <h3 className="font-semibold mb-2">Бесплатная консультация</h3>
                   <p className="text-zinc-400 text-sm mb-4">Позвоните нам — мастер ответит на вопросы и поможет разобраться с проблемой</p>
-                  <a href="tel:+74951234567" className="inline-flex items-center gap-2 font-semibold hover:text-zinc-300 transition-colors">
-                    <Icon name="Phone" size={15} />
-                    +7 (495) 123-45-67
-                  </a>
+                  <div className="flex flex-col gap-2">
+                    <a href="tel:+79104441149" className="inline-flex items-center gap-2 font-semibold hover:text-zinc-300 transition-colors">
+                      <Icon name="Phone" size={15} />
+                      +7 (910) 444-11-49
+                    </a>
+                    <a href="tel:+79854912526" className="inline-flex items-center gap-2 font-medium text-zinc-300 hover:text-white transition-colors">
+                      <Icon name="Phone" size={15} />
+                      +7 (985) 491-25-26
+                    </a>
+                  </div>
                 </div>
               </div>
 
               <div>
                 <h2 className="text-xl font-semibold mb-4">Как нас найти</h2>
-                <p className="text-zinc-500 text-sm mb-6">г. Москва, ул. Промышленная, 42. Рядом с метро Текстильщики, бесплатная парковка на территории.</p>
-                <div className="bg-zinc-100 aspect-video flex items-center justify-center mb-6">
-                  <div className="text-center">
-                    <Icon name="MapPin" size={32} className="text-zinc-400 mx-auto mb-3" />
-                    <p className="text-zinc-400 text-sm">Карта</p>
-                  </div>
+                <p className="text-zinc-500 text-sm mb-4">территория Микрорайон, 9А, деревня Гряды, Волоколамский муниципальный округ, Московская область. Бесплатная парковка на территории.</p>
+                {/* Яндекс карта */}
+                <div className="w-full overflow-hidden mb-6 border border-zinc-200" style={{ height: "300px" }}>
+                  <iframe
+                    src="https://yandex.ru/map-widget/v1/?um=constructor%3ACPwueXIC&amp;source=constructor"
+                    width="100%"
+                    height="300"
+                    frameBorder="0"
+                    title="Карта проезда"
+                    allowFullScreen
+                    style={{ display: "block" }}
+                  />
                 </div>
                 <div className="grid grid-cols-2 gap-3">
                   {[
                     { icon: "Car", text: "Бесплатная парковка" },
-                    { icon: "Train", text: "5 мин от метро" },
                     { icon: "Coffee", text: "Зона ожидания" },
-                    { icon: "Wifi", text: "Бесплатный Wi-Fi" },
                   ].map((item, i) => (
                     <div key={i} className="flex items-center gap-2.5 p-3 bg-zinc-50 text-sm text-zinc-600">
                       <Icon name={item.icon} size={14} className="text-zinc-400 flex-shrink-0" />
