@@ -609,11 +609,6 @@ export default function Index() {
                     title: "Честные цены",
                     desc: "Смета согласовывается до начала — никаких сюрпризов",
                   },
-                  {
-                    icon: "Users",
-                    title: "Опытная команда",
-                    desc: "48 мастеров с опытом от 5 лет",
-                  },
                 ].map((item, i) => (
                   <div key={i} className="bg-white p-6 flex gap-4">
                     <div className="w-10 h-10 bg-zinc-900 flex items-center justify-center flex-shrink-0">
