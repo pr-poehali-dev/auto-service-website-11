@@ -26,178 +26,60 @@ const CONTACTS = [
 ];
 
 // Шиномонтаж данные
-const TIRE_CATEGORIES = [
+// Колонки: 13", 14", 15", 16", 17", 18", 19", 20-21", 22"
+const TIRE_COLS = ['13"', '14"', '15"', '16"', '17"', '18"', '19"', '20–21"', '22"+'];
+
+interface TireItem {
+  name: string;
+  prices: (string | null)[];
+  note?: string;
+}
+interface TireSection {
+  title: string;
+  items: TireItem[];
+}
+
+const TIRE_DATA: TireSection[] = [
   {
-    category: "Легковые автомобили",
-    subtitle: "R13–R18",
+    title: "Монтаж/Демонтаж колёс",
     items: [
-      {
-        name: "Снятие/установка колеса (1 шт.)",
-        r13_15: "150 ₽",
-        r16_17: "200 ₽",
-        r18_20: "250 ₽",
-      },
-      {
-        name: "Демонтаж/монтаж шины (1 шт.)",
-        r13_15: "200 ₽",
-        r16_17: "250 ₽",
-        r18_20: "350 ₽",
-      },
-      {
-        name: "Балансировка (1 колесо)",
-        r13_15: "150 ₽",
-        r16_17: "180 ₽",
-        r18_20: "220 ₽",
-      },
-      {
-        name: "Шиномонтаж + балансировка (4 колеса)",
-        r13_15: "2 000 ₽",
-        r16_17: "2 600 ₽",
-        r18_20: "3 400 ₽",
-      },
-      { name: "Подкачка шины", r13_15: "50 ₽", r16_17: "50 ₽", r18_20: "50 ₽" },
-      {
-        name: "Ремонт прокола (жгут)",
-        r13_15: "300 ₽",
-        r16_17: "300 ₽",
-        r18_20: "300 ₽",
-      },
-      {
-        name: "Ремонт прокола (заплатка)",
-        r13_15: "500 ₽",
-        r16_17: "500 ₽",
-        r18_20: "600 ₽",
-      },
-      {
-        name: "Замена вентиля",
-        r13_15: "100 ₽",
-        r16_17: "100 ₽",
-        r18_20: "150 ₽",
-      },
+      { name: "Снятие и установка колеса", prices: ["100", "100", "150", "150", "200", "250", "300", "300", "500"] },
+      { name: "Монтаж/Демонтаж колеса", prices: ["250", "250", "250", "250", "300", "300", "400", "500", "800"] },
     ],
   },
   {
-    category: "Внедорожники и кроссоверы",
-    subtitle: "R17–R22",
+    title: "Балансировка колёс",
     items: [
-      {
-        name: "Снятие/установка колеса (1 шт.)",
-        r13_15: "—",
-        r16_17: "250 ₽",
-        r18_20: "350 ₽",
-      },
-      {
-        name: "Демонтаж/монтаж шины (1 шт.)",
-        r13_15: "—",
-        r16_17: "350 ₽",
-        r18_20: "450 ₽",
-      },
-      {
-        name: "Балансировка (1 колесо)",
-        r13_15: "—",
-        r16_17: "220 ₽",
-        r18_20: "280 ₽",
-      },
-      {
-        name: "Шиномонтаж + балансировка (4 колеса)",
-        r13_15: "—",
-        r16_17: "3 300 ₽",
-        r18_20: "4 400 ₽",
-      },
-      {
-        name: "Ремонт прокола (жгут)",
-        r13_15: "—",
-        r16_17: "350 ₽",
-        r18_20: "350 ₽",
-      },
-      {
-        name: "Ремонт прокола (заплатка)",
-        r13_15: "—",
-        r16_17: "600 ₽",
-        r18_20: "700 ₽",
-      },
-      { name: "Замена вентиля", r13_15: "—", r16_17: "150 ₽", r18_20: "200 ₽" },
+      { name: "1 колесо", prices: ["250", "300", "300", "400", "450", "500", "600", "700", "1 000"] },
     ],
   },
   {
-    category: "Низкопрофильные шины",
-    subtitle: "профиль 35 и ниже",
+    title: "Комплекс шиномонтажных работ (переобувка)",
     items: [
-      {
-        name: "Демонтаж/монтаж шины (1 шт.)",
-        r13_15: "—",
-        r16_17: "400 ₽",
-        r18_20: "550 ₽",
-      },
-      {
-        name: "Балансировка (1 колесо)",
-        r13_15: "—",
-        r16_17: "250 ₽",
-        r18_20: "300 ₽",
-      },
-      {
-        name: "Шиномонтаж + балансировка (4 колеса)",
-        r13_15: "—",
-        r16_17: "4 200 ₽",
-        r18_20: "5 600 ₽",
-      },
-      {
-        name: "Ремонт прокола (заплатка)",
-        r13_15: "—",
-        r16_17: "700 ₽",
-        r18_20: "900 ₽",
-      },
+      { name: "Комплекс (4 колеса)", prices: ["2 400", "2 600", "2 800", "3 000", "3 500", "4 000", "5 000", "6 000", "9 000"] },
     ],
   },
   {
-    category: "Дополнительные услуги",
-    subtitle: "",
+    title: "Замена готового комплекта с балансировкой",
     items: [
-      {
-        name: "Хранение шин (сезон, 4 шт.)",
-        r13_15: "2 500 ₽",
-        r16_17: "3 000 ₽",
-        r18_20: "3 500 ₽",
-      },
-      {
-        name: "Хранение шин на дисках (сезон, 4 шт.)",
-        r13_15: "3 500 ₽",
-        r16_17: "4 000 ₽",
-        r18_20: "4 500 ₽",
-      },
-      {
-        name: "Мойка дисков (4 шт.)",
-        r13_15: "500 ₽",
-        r16_17: "700 ₽",
-        r18_20: "900 ₽",
-      },
-      {
-        name: "Нанесение чернителя резины (4 шт.)",
-        r13_15: "400 ₽",
-        r16_17: "400 ₽",
-        r18_20: "400 ₽",
-      },
-      {
-        name: "Затяжка гаек динамометрическим ключом",
-        r13_15: "200 ₽",
-        r16_17: "200 ₽",
-        r18_20: "200 ₽",
-      },
-      {
-        name: "Установка колёсных проставок (к-т)",
-        r13_15: "800 ₽",
-        r16_17: "800 ₽",
-        r18_20: "1 000 ₽",
-      },
-      {
-        name: "Проверка давления в шинах (все колёса)",
-        r13_15: "бесплатно",
-        r16_17: "бесплатно",
-        r18_20: "бесплатно",
-      },
+      { name: "Комплекс (4 колеса)", prices: ["1 400", "1 600", "1 800", "2 200", "2 500", "3 000", "3 600", "4 000", "6 000"] },
+    ],
+  },
+  {
+    title: "Дополнительные работы",
+    items: [
+      { name: "Установка нового вентилятора (колесо)", prices: ["500", "500", "500", "500", "500", "500", "500", "500", "500"] },
+      { name: "Утилизация покрышки (колесо)", prices: ["500", "500", "500", "500", "500", "500", "500", "500", "500"] },
+      { name: "Установка жгута — ремонт шины (колесо)", prices: ["1 000", "1 000", "1 000", "1 000", "1 000", "1 000", "1 000", "1 000", "1 000"] },
+      { name: "Установка грибка/заплатки", prices: ["1 000", "1 000", "1 000", "1 000", "1 000", "1 000", "1 000", "1 000", "1 000"] },
+      { name: "Герметизация обвода б/к шины (одна сторона)", prices: ["1 000", "1 000", "1 000", "1 000", "1 000", "1 000", "1 000", "1 000", "1 000"] },
+      { name: "Пакет для покрышек (колесо)", prices: [null, null, null, null, null, null, null, null, null], note: "Бесплатно" },
+      { name: "Хранение шин (4 колеса)", prices: [null, null, null, null, null, null, null, null, null], note: "1 000 ₽/комплект/месяц" },
+      { name: "Подкачка шин (4 колеса)", prices: [null, null, null, null, null, null, null, null, null], note: "100 ₽" },
     ],
   },
 ];
+
 
 const navItems = [
   { id: "home", label: "Главная" },
@@ -210,7 +92,6 @@ const navItems = [
 export default function Index() {
   const [activeSection, setActiveSection] = useState("home");
   const [menuOpen, setMenuOpen] = useState(false);
-  const [tireCategory, setTireCategory] = useState(0);
   const [cookieAccepted, setCookieAccepted] = useState(() => {
     return localStorage.getItem("cookie_accepted") === "1";
   });
@@ -654,109 +535,95 @@ export default function Index() {
             {/* Info badges */}
             <div className="flex flex-wrap gap-3 mb-10">
               {[
-                { icon: "Clock", text: "Без записи, пн–вс 8:00–21:00" },
+                { icon: "Clock", text: "Без записи, пн–вс 9:00–18:00" },
                 { icon: "Shield", text: "Гарантия на балансировку" },
                 { icon: "Warehouse", text: "Хранение шин на складе" },
                 { icon: "Zap", text: "Сезонная смена за 30 мин" },
               ].map((b, i) => (
-                <div
-                  key={i}
-                  className="flex items-center gap-2 border border-zinc-200 px-4 py-2 text-sm text-zinc-600"
-                >
+                <div key={i} className="flex items-center gap-2 border border-zinc-200 px-4 py-2 text-sm text-zinc-600">
                   <Icon name={b.icon} size={14} className="text-zinc-400" />
                   {b.text}
                 </div>
               ))}
             </div>
 
-            {/* Category tabs */}
-            <div className="flex gap-px bg-zinc-100 mb-0 overflow-x-auto">
-              {TIRE_CATEGORIES.map((cat, i) => (
-                <button
-                  key={i}
-                  onClick={() => setTireCategory(i)}
-                  className={`px-5 py-3 text-sm font-medium whitespace-nowrap transition-colors flex-shrink-0 ${
-                    tireCategory === i
-                      ? "bg-zinc-900 text-white"
-                      : "bg-white text-zinc-500 hover:text-zinc-900"
-                  }`}
-                >
-                  {cat.category}
-                  {cat.subtitle && (
-                    <span
-                      className={`ml-2 text-xs ${tireCategory === i ? "text-zinc-400" : "text-zinc-400"}`}
-                    >
-                      {cat.subtitle}
-                    </span>
-                  )}
-                </button>
-              ))}
-            </div>
-
-            {/* Table — desktop */}
-            <div className="hidden sm:block border border-zinc-100 border-t-0">
-              <div
-                className="grid bg-zinc-900 text-white text-xs uppercase tracking-wider"
-                style={{ gridTemplateColumns: "1fr 140px 140px 140px" }}
-              >
-                <div className="px-6 py-4">Наименование услуги</div>
-                <div className="px-4 py-4 text-center">R13–R15</div>
-                <div className="px-4 py-4 text-center">R16–R17</div>
-                <div className="px-4 py-4 text-center">R18–R22</div>
+            {/* Desktop table */}
+            <div className="hidden lg:block space-y-0 border border-zinc-200 overflow-hidden">
+              {/* Header row */}
+              <div className="grid bg-zinc-900 text-white text-xs uppercase tracking-wider" style={{ gridTemplateColumns: "2fr repeat(9, 1fr)" }}>
+                <div className="px-4 py-3">Вид работ</div>
+                {TIRE_COLS.map(c => <div key={c} className="px-2 py-3 text-center">{c}</div>)}
               </div>
-              {TIRE_CATEGORIES[tireCategory].items.map((item, i) => (
-                <div
-                  key={i}
-                  className="grid border-t border-zinc-100 hover:bg-zinc-50 transition-colors"
-                  style={{ gridTemplateColumns: "1fr 140px 140px 140px" }}
-                >
-                  <div className="px-6 py-4 text-sm font-medium">
-                    {item.name}
+              {TIRE_DATA.map((section, si) => (
+                <div key={si}>
+                  <div className="bg-zinc-50 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-zinc-500 border-t border-zinc-200">
+                    {section.title}
                   </div>
-                  <div
-                    className={`px-4 py-4 text-sm text-center font-medium ${item.r13_15 === "бесплатно" ? "text-emerald-600" : item.r13_15 === "—" ? "text-zinc-300" : "text-zinc-900"}`}
-                  >
-                    {item.r13_15}
-                  </div>
-                  <div
-                    className={`px-4 py-4 text-sm text-center font-medium ${item.r16_17 === "бесплатно" ? "text-emerald-600" : item.r16_17 === "—" ? "text-zinc-300" : "text-zinc-900"}`}
-                  >
-                    {item.r16_17}
-                  </div>
-                  <div
-                    className={`px-4 py-4 text-sm text-center font-medium ${item.r18_20 === "бесплатно" ? "text-emerald-600" : item.r18_20 === "—" ? "text-zinc-300" : "text-zinc-900"}`}
-                  >
-                    {item.r18_20}
-                  </div>
+                  {section.items.map((item, ii) => (
+                    <div key={ii} className="grid border-t border-zinc-100 hover:bg-zinc-50 transition-colors" style={{ gridTemplateColumns: "2fr repeat(9, 1fr)" }}>
+                      <div className="px-4 py-3 text-sm font-medium text-zinc-800">{item.name}</div>
+                      {item.note
+                        ? <div className="col-span-9 px-4 py-3 text-sm text-center font-medium text-emerald-700">{item.note}</div>
+                        : item.prices.map((p, pi) => (
+                          <div key={pi} className="px-2 py-3 text-sm text-center font-medium text-zinc-900">{p ? `${p} ₽` : "—"}</div>
+                        ))
+                      }
+                    </div>
+                  ))}
                 </div>
               ))}
             </div>
 
-            {/* Cards — mobile */}
-            <div className="sm:hidden space-y-px border border-zinc-100 border-t-0">
-              {TIRE_CATEGORIES[tireCategory].items.map((item, i) => (
-                <div key={i} className="bg-white p-4 border-t border-zinc-100">
-                  <p className="text-sm font-semibold mb-3 text-zinc-900">
-                    {item.name}
-                  </p>
-                  <div className="grid grid-cols-3 gap-2">
-                    {[
-                      { label: "R13–R15", val: item.r13_15 },
-                      { label: "R16–R17", val: item.r16_17 },
-                      { label: "R18–R22", val: item.r18_20 },
-                    ].map((col) => (
-                      <div
-                        key={col.label}
-                        className="bg-zinc-50 rounded px-2 py-2 text-center"
-                      >
-                        <div className="text-[10px] text-zinc-400 uppercase tracking-wide mb-1">
-                          {col.label}
-                        </div>
-                        <div
-                          className={`text-sm font-semibold ${col.val === "бесплатно" ? "text-emerald-600 text-xs" : col.val === "—" ? "text-zinc-300" : "text-zinc-900"}`}
-                        >
-                          {col.val}
-                        </div>
+            {/* Tablet table (sm–lg): горизонтальный скролл */}
+            <div className="hidden sm:block lg:hidden overflow-x-auto border border-zinc-200">
+              <div style={{ minWidth: "700px" }}>
+                <div className="grid bg-zinc-900 text-white text-xs uppercase tracking-wider" style={{ gridTemplateColumns: "2fr repeat(9, 1fr)" }}>
+                  <div className="px-4 py-3">Вид работ</div>
+                  {TIRE_COLS.map(c => <div key={c} className="px-2 py-3 text-center">{c}</div>)}
+                </div>
+                {TIRE_DATA.map((section, si) => (
+                  <div key={si}>
+                    <div className="bg-zinc-50 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-zinc-500 border-t border-zinc-200">{section.title}</div>
+                    {section.items.map((item, ii) => (
+                      <div key={ii} className="grid border-t border-zinc-100" style={{ gridTemplateColumns: "2fr repeat(9, 1fr)" }}>
+                        <div className="px-4 py-3 text-sm font-medium text-zinc-800">{item.name}</div>
+                        {item.note
+                          ? <div className="col-span-9 px-4 py-3 text-sm text-center font-medium text-emerald-700">{item.note}</div>
+                          : item.prices.map((p, pi) => (
+                            <div key={pi} className="px-2 py-3 text-sm text-center font-medium text-zinc-900">{p ? `${p} ₽` : "—"}</div>
+                          ))
+                        }
+                      </div>
+                    ))}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Mobile cards */}
+            <div className="sm:hidden space-y-4">
+              {TIRE_DATA.map((section, si) => (
+                <div key={si}>
+                  <div className="bg-zinc-900 text-white px-4 py-2 text-xs font-semibold uppercase tracking-wider">{section.title}</div>
+                  <div className="space-y-px border border-t-0 border-zinc-200">
+                    {section.items.map((item, ii) => (
+                      <div key={ii} className="bg-white p-4 border-t border-zinc-100">
+                        <p className="text-sm font-semibold mb-3 text-zinc-900">{item.name}</p>
+                        {item.note
+                          ? <div className="text-sm font-medium text-emerald-700">{item.note}</div>
+                          : (
+                            <div className="grid grid-cols-3 gap-1.5">
+                              {TIRE_COLS.map((col, ci) => (
+                                item.prices[ci] && (
+                                  <div key={ci} className="bg-zinc-50 rounded px-2 py-2 text-center">
+                                    <div className="text-[9px] text-zinc-400 uppercase tracking-wide mb-0.5">{col}</div>
+                                    <div className="text-xs font-semibold text-zinc-900">{item.prices[ci]} ₽</div>
+                                  </div>
+                                )
+                              ))}
+                            </div>
+                          )
+                        }
                       </div>
                     ))}
                   </div>
@@ -764,10 +631,11 @@ export default function Index() {
               ))}
             </div>
 
-            <p className="text-zinc-400 text-xs mt-4">
-              * Цены указаны за единицу работы, если не обозначено иное. При
-              комплексном заказе — скидки.
-            </p>
+            <div className="mt-3 space-y-1">
+              <p className="text-zinc-400 text-xs">* Низкопрофильная резина (профиль 40 и ниже) — +25%</p>
+              <p className="text-zinc-400 text-xs">* Run Flat — +50%</p>
+              <p className="text-zinc-400 text-xs">* Джипы — цена договорная</p>
+            </div>
 
             {/* Bottom promo */}
             <div className="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-px bg-zinc-100">
