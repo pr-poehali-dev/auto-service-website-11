@@ -160,141 +160,141 @@ export const BASE_NODES: Omit<RepairNode, "price">[] = [
 // Базовые цены (работа, без запчастей) — уровень московского сервиса
 const BASE_PRICES: [number, number][] = [
   // ── Двигатель до 1.6л (18 позиций) ──
-  [700, 1200],      // Замена масла и фильтра до 1.6
+  [700, 1000],      // Замена масла и фильтра до 1.6
   [200, 400],       // Замена воздушного фильтра до 1.6
-  [300, 600],       // Замена салонного фильтра
-  [1500, 2500],     // Диагностика двигателя
-  [3500, 8000],     // Замена ремня ГРМ до 1.6
-  [5500, 13000],    // Замена цепи ГРМ до 1.6
-  [9000, 22000],    // Замена прокладки ГБЦ до 1.6
-  [14000, 35000],   // Снятие/установка ГБЦ до 1.6
-  [20000, 55000],   // Капитальный ремонт ДВС до 1.6
-  [2000, 5000],     // Замена помпы до 1.6
-  [1000, 2500],     // Замена термостата до 1.6
-  [2000, 6000],     // Замена радиатора до 1.6
-  [1500, 4000],     // Промывка топл. системы до 1.6
-  [2500, 7000],     // Замена топл. насоса до 1.6
-  [2500, 5500],     // Чистка форсунок до 1.6
-  [800, 2000],      // Замена прокладки кл. крышки до 1.6
-  [3500, 9000],     // Замена маслосъёмных колпачков до 1.6
-  [1500, 4000],     // Регулировка клапанов до 1.6
+  [300, 500],       // Замена салонного фильтра
+  [1500, 2200],     // Диагностика двигателя
+  [3500, 5000],     // Замена ремня ГРМ до 1.6
+  [5500, 8000],     // Замена цепи ГРМ до 1.6
+  [9000, 13000],    // Замена прокладки ГБЦ до 1.6
+  [14000, 20000],   // Снятие/установка ГБЦ до 1.6
+  [20000, 28000],   // Капитальный ремонт ДВС до 1.6
+  [2000, 3000],     // Замена помпы до 1.6
+  [1000, 1500],     // Замена термостата до 1.6
+  [2000, 3000],     // Замена радиатора до 1.6
+  [1500, 2500],     // Промывка топл. системы до 1.6
+  [2500, 3800],     // Замена топл. насоса до 1.6
+  [2500, 3800],     // Чистка форсунок до 1.6
+  [800, 1200],      // Замена прокладки кл. крышки до 1.6
+  [3500, 5000],     // Замена маслосъёмных колпачков до 1.6
+  [1500, 2500],     // Регулировка клапанов до 1.6
   // ── Двигатель 1.6–2.5л (18 позиций) ──
-  [900, 1500],      // Замена масла и фильтра 1.6-2.5
-  [300, 600],       // Замена воздушного фильтра 1.6-2.5
-  [1800, 3200],     // Диагностика двигателя 1.6-2.5
-  [5000, 12000],    // Замена ремня ГРМ 1.6-2.5
-  [8000, 20000],    // Замена цепи ГРМ 1.6-2.5
-  [13000, 32000],   // Замена прокладки ГБЦ 1.6-2.5
-  [20000, 48000],   // Снятие/установка ГБЦ 1.6-2.5
-  [9000, 22000],    // Шлифовка ГБЦ 1.6-2.5
-  [30000, 90000],   // Капитальный ремонт ДВС 1.6-2.5
-  [3000, 8000],     // Замена помпы 1.6-2.5
-  [1500, 3500],     // Замена термостата 1.6-2.5
-  [3500, 9000],     // Замена радиатора 1.6-2.5
-  [2000, 5000],     // Промывка топл. системы 1.6-2.5
-  [4000, 10000],    // Замена топл. насоса 1.6-2.5
-  [3000, 7000],     // Чистка форсунок 1.6-2.5
-  [1200, 3000],     // Замена прокладки кл. крышки 1.6-2.5
-  [5000, 13000],    // Замена маслосъёмных колпачков 1.6-2.5
-  [2500, 6000],     // Регулировка клапанов 1.6-2.5
+  [900, 1300],      // Замена масла и фильтра 1.6-2.5
+  [300, 500],       // Замена воздушного фильтра 1.6-2.5
+  [1800, 2800],     // Диагностика двигателя 1.6-2.5
+  [5000, 7000],     // Замена ремня ГРМ 1.6-2.5
+  [8000, 11000],    // Замена цепи ГРМ 1.6-2.5
+  [13000, 18000],   // Замена прокладки ГБЦ 1.6-2.5
+  [20000, 28000],   // Снятие/установка ГБЦ 1.6-2.5
+  [9000, 13000],    // Шлифовка ГБЦ 1.6-2.5
+  [30000, 42000],   // Капитальный ремонт ДВС 1.6-2.5
+  [3000, 4500],     // Замена помпы 1.6-2.5
+  [1500, 2500],     // Замена термостата 1.6-2.5
+  [3500, 5000],     // Замена радиатора 1.6-2.5
+  [2000, 3000],     // Промывка топл. системы 1.6-2.5
+  [4000, 6000],     // Замена топл. насоса 1.6-2.5
+  [3000, 4500],     // Чистка форсунок 1.6-2.5
+  [1200, 1800],     // Замена прокладки кл. крышки 1.6-2.5
+  [5000, 7000],     // Замена маслосъёмных колпачков 1.6-2.5
+  [2500, 3800],     // Регулировка клапанов 1.6-2.5
   // ── Двигатель свыше 2.5л (18 позиций) ──
-  [1200, 2200],     // Замена масла и фильтра 2.5+
-  [400, 900],       // Замена воздушного фильтра 2.5+
-  [2500, 4500],     // Диагностика двигателя 2.5+
-  [7000, 18000],    // Замена ремня ГРМ 2.5+
-  [12000, 30000],   // Замена цепи ГРМ 2.5+
-  [18000, 50000],   // Замена прокладки ГБЦ 2.5+
-  [28000, 70000],   // Снятие/установка ГБЦ 2.5+
-  [12000, 30000],   // Шлифовка ГБЦ 2.5+
-  [45000, 150000],  // Капитальный ремонт ДВС 2.5+
-  [4500, 12000],    // Замена помпы 2.5+
-  [2000, 5500],     // Замена термостата 2.5+
-  [5000, 14000],    // Замена радиатора 2.5+
-  [3000, 8000],     // Промывка топл. системы 2.5+
-  [5500, 14000],    // Замена топл. насоса 2.5+
-  [4500, 10000],    // Чистка форсунок 2.5+
-  [2000, 5000],     // Замена прокладки кл. крышки 2.5+
-  [7000, 20000],    // Замена маслосъёмных колпачков 2.5+
-  [4000, 10000],    // Регулировка клапанов 2.5+
+  [1200, 1800],     // Замена масла и фильтра 2.5+
+  [400, 700],       // Замена воздушного фильтра 2.5+
+  [2500, 3800],     // Диагностика двигателя 2.5+
+  [7000, 10000],    // Замена ремня ГРМ 2.5+
+  [12000, 17000],   // Замена цепи ГРМ 2.5+
+  [18000, 25000],   // Замена прокладки ГБЦ 2.5+
+  [28000, 38000],   // Снятие/установка ГБЦ 2.5+
+  [12000, 17000],   // Шлифовка ГБЦ 2.5+
+  [45000, 65000],   // Капитальный ремонт ДВС 2.5+
+  [4500, 6500],     // Замена помпы 2.5+
+  [2000, 3000],     // Замена термостата 2.5+
+  [5000, 7000],     // Замена радиатора 2.5+
+  [3000, 4500],     // Промывка топл. системы 2.5+
+  [5500, 8000],     // Замена топл. насоса 2.5+
+  [4500, 6500],     // Чистка форсунок 2.5+
+  [2000, 3000],     // Замена прокладки кл. крышки 2.5+
+  [7000, 10000],    // Замена маслосъёмных колпачков 2.5+
+  [4000, 6000],     // Регулировка клапанов 2.5+
   // КПП (14 позиций)
-  [1000, 2500],     // Замена масла в МКПП
-  [1200, 3500],     // Замена масла в АКПП
-  [2000, 4500],     // Диагностика КПП
-  [15000, 60000],   // Ремонт АКПП
-  [8000, 25000],    // Замена гидроблока АКПП
-  [7000, 18000],    // Замена сцепления
-  [15000, 40000],   // Замена двухмассового маховика
-  [18000, 65000],   // Ремонт вариатора
-  [1200, 3500],     // Замена кулисы КПП
-  [2500, 6000],     // Замена ШРУС внешнего
-  [3500, 8000],     // Замена ШРУС внутреннего
-  [4500, 12000],    // Замена приводного вала
-  [1000, 2500],     // Замена пыльника ШРУС
-  [5000, 14000],    // Замена подшипника вторич. вала
+  [1000, 1500],     // Замена масла в МКПП
+  [1200, 1800],     // Замена масла в АКПП
+  [2000, 3000],     // Диагностика КПП
+  [15000, 22000],   // Ремонт АКПП
+  [8000, 12000],    // Замена гидроблока АКПП
+  [7000, 10000],    // Замена сцепления
+  [15000, 21000],   // Замена двухмассового маховика
+  [18000, 26000],   // Ремонт вариатора
+  [1200, 1800],     // Замена кулисы КПП
+  [2500, 3800],     // Замена ШРУС внешнего
+  [3500, 5000],     // Замена ШРУС внутреннего
+  [4500, 6500],     // Замена приводного вала
+  [1000, 1500],     // Замена пыльника ШРУС
+  [5000, 7000],     // Замена подшипника вторич. вала
   // Тормоза (14 позиций)
-  [1000, 2500],     // Замена передних колодок
-  [1200, 3000],     // Замена задних колодок
-  [2500, 6000],     // Замена передних дисков
-  [3000, 8000],     // Замена задних дисков
-  [800, 2000],      // Замена тормозной жидкости
-  [1000, 2500],     // Прокачка тормозов
-  [3000, 8000],     // Замена главного цилиндра
-  [1500, 4000],     // Замена рабочего цилиндра
-  [2500, 7000],     // Замена тормозных трубок
-  [1500, 4500],     // Ремонт суппорта
-  [3500, 9000],     // Замена суппорта
-  [1000, 3000],     // Замена датчика ABS
-  [800, 2000],      // Замена тормозного шланга
-  [1500, 4000],     // Замена тросика ручника
+  [1000, 1500],     // Замена передних колодок
+  [1200, 1800],     // Замена задних колодок
+  [2500, 3800],     // Замена передних дисков
+  [3000, 4500],     // Замена задних дисков
+  [800, 1200],      // Замена тормозной жидкости
+  [1000, 1500],     // Прокачка тормозов
+  [3000, 4500],     // Замена главного цилиндра
+  [1500, 2500],     // Замена рабочего цилиндра
+  [2500, 3800],     // Замена тормозных трубок
+  [1500, 2500],     // Ремонт суппорта
+  [3500, 5000],     // Замена суппорта
+  [1000, 1500],     // Замена датчика ABS
+  [800, 1200],      // Замена тормозного шланга
+  [1500, 2500],     // Замена тросика ручника
   // Подвеска (19 позиций)
-  [2500, 7000],     // Замена передних амортизаторов
-  [2000, 6000],     // Замена задних амортизаторов
-  [2000, 6000],     // Замена опорного подшипника
-  [2000, 5500],     // Замена переднего рычага
-  [2500, 7000],     // Замена заднего рычага
-  [1800, 3500],     // Развал-схождение 2D
-  [2200, 4500],     // Развал-схождение 3D
-  [1500, 4000],     // Замена рулевых наконечников
-  [2000, 5000],     // Замена рулевой тяги
-  [1500, 5000],     // Замена шаровых опор
-  [800, 2500],      // Замена стойки стабилизатора
-  [1000, 3000],     // Замена втулки стабилизатора
-  [2500, 8000],     // Замена ступичного подшипника
-  [7000, 22000],    // Замена рулевой рейки
-  [5000, 15000],    // Ремонт рулевой рейки
-  [3500, 10000],    // Замена рулевой колонки
-  [2000, 6000],     // Замена пружин подвески
-  [2500, 7000],     // Замена сайлентблоков рычага
-  [5000, 15000],    // Замена подрамника
+  [2500, 3800],     // Замена передних амортизаторов
+  [2000, 3000],     // Замена задних амортизаторов
+  [2000, 3000],     // Замена опорного подшипника
+  [2000, 3000],     // Замена переднего рычага
+  [2500, 3800],     // Замена заднего рычага
+  [1800, 2500],     // Развал-схождение 2D
+  [2200, 3200],     // Развал-схождение 3D
+  [1500, 2500],     // Замена рулевых наконечников
+  [2000, 3000],     // Замена рулевой тяги
+  [1500, 2500],     // Замена шаровых опор
+  [800, 1200],      // Замена стойки стабилизатора
+  [1000, 1500],     // Замена втулки стабилизатора
+  [2500, 3800],     // Замена ступичного подшипника
+  [7000, 10000],    // Замена рулевой рейки
+  [5000, 7000],     // Ремонт рулевой рейки
+  [3500, 5000],     // Замена рулевой колонки
+  [2000, 3000],     // Замена пружин подвески
+  [2500, 3800],     // Замена сайлентблоков рычага
+  [5000, 7000],     // Замена подрамника
   // Электрика (27 позиций)
-  [1000, 2000],     // Компьютерная диагностика
-  [800, 1500],      // Диагностика ошибок по кодам
-  [400, 900],       // Замена аккумулятора
-  [700, 1500],      // Диагностика и зарядка АКБ
-  [2500, 7000],     // Ремонт генератора
-  [2500, 6000],     // Замена генератора
-  [2000, 6000],     // Ремонт стартера
-  [2000, 5000],     // Замена стартера
-  [700, 2000],      // Замена свечей зажигания
-  [2000, 5000],     // Замена свечей накала
-  [1200, 3500],     // Замена катушки зажигания
-  [2500, 8000],     // Ремонт кондиционера
-  [1200, 3000],     // Заправка кондиционера
-  [5000, 15000],    // Замена компрессора кондиционера
-  [1200, 3500],     // Замена лямбда-зонда
-  [1200, 3500],     // Замена датчика кислорода
-  [2500, 7000],     // Прошивка ЭБУ
-  [4000, 12000],    // Замена ЭБУ двигателя
-  [700, 2500],      // Ремонт системы освещения
-  [500, 2000],      // Замена ламп фар
-  [1000, 3000],     // Замена датчика парковки
-  [600, 1500],      // Замена датчика темп. ОЖ
-  [600, 1500],      // Замена датчика давления масла
-  [1200, 3500],     // Замена топливного датчика
-  [2000, 8000],     // Ремонт проводки/жгута
-  [3000, 8000],     // Установка сигнализации
-  [800, 2500],      // Установка видеорегистратора
-  [300, 800],       // Замена предохранителей
+  [1000, 1500],     // Компьютерная диагностика
+  [800, 1200],      // Диагностика ошибок по кодам
+  [400, 700],       // Замена аккумулятора
+  [700, 1000],      // Диагностика и зарядка АКБ
+  [2500, 3800],     // Ремонт генератора
+  [2500, 3800],     // Замена генератора
+  [2000, 3000],     // Ремонт стартера
+  [2000, 3000],     // Замена стартера
+  [700, 1000],      // Замена свечей зажигания
+  [2000, 3000],     // Замена свечей накала
+  [1200, 1800],     // Замена катушки зажигания
+  [2500, 3800],     // Ремонт кондиционера
+  [1200, 1800],     // Заправка кондиционера
+  [5000, 7000],     // Замена компрессора кондиционера
+  [1200, 1800],     // Замена лямбда-зонда
+  [1200, 1800],     // Замена датчика кислорода
+  [2500, 3800],     // Прошивка ЭБУ
+  [4000, 6000],     // Замена ЭБУ двигателя
+  [700, 1000],      // Ремонт системы освещения
+  [500, 800],       // Замена ламп фар
+  [1000, 1500],     // Замена датчика парковки
+  [600, 900],       // Замена датчика темп. ОЖ
+  [600, 900],       // Замена датчика давления масла
+  [1200, 1800],     // Замена топливного датчика
+  [2000, 3000],     // Ремонт проводки/жгута
+  [3000, 4500],     // Установка сигнализации
+  [800, 1200],      // Установка видеорегистратора
+  [300, 500],       // Замена предохранителей
 ];
 
 function makeNodes(coeff: number): RepairNode[] {
@@ -314,155 +314,155 @@ export const CAR_DATA: CarBrand[] = [
   {
     brand: "BMW",
     models: [
-      { name: "1 серия (E87)", nodes: makeNodes(1.9) },
-      { name: "1 серия (F20)", nodes: makeNodes(2.0) },
-      { name: "2 серия", nodes: makeNodes(2.1) },
-      { name: "2 серия Active Tourer", nodes: makeNodes(2.1) },
-      { name: "3 серия (E46)", nodes: makeNodes(2.0) },
-      { name: "3 серия (E90)", nodes: makeNodes(2.1) },
-      { name: "3 серия (F30)", nodes: makeNodes(2.2) },
-      { name: "3 серия (G20)", nodes: makeNodes(2.3) },
-      { name: "4 серия", nodes: makeNodes(2.4) },
-      { name: "5 серия (E60)", nodes: makeNodes(2.3) },
-      { name: "5 серия (F10)", nodes: makeNodes(2.5) },
-      { name: "5 серия (G30)", nodes: makeNodes(2.6) },
-      { name: "6 серия Gran Turismo", nodes: makeNodes(2.8) },
-      { name: "7 серия (F01)", nodes: makeNodes(3.0) },
-      { name: "7 серия (G11)", nodes: makeNodes(3.2) },
-      { name: "8 серия", nodes: makeNodes(3.5) },
-      { name: "X1 (F48)", nodes: makeNodes(2.0) },
-      { name: "X1 (U11)", nodes: makeNodes(2.1) },
-      { name: "X2", nodes: makeNodes(2.2) },
-      { name: "X3 (F25)", nodes: makeNodes(2.4) },
-      { name: "X3 (G01)", nodes: makeNodes(2.5) },
-      { name: "X4", nodes: makeNodes(2.6) },
-      { name: "X5 (E70)", nodes: makeNodes(2.7) },
-      { name: "X5 (F15)", nodes: makeNodes(2.8) },
-      { name: "X5 (G05)", nodes: makeNodes(2.9) },
-      { name: "X6", nodes: makeNodes(3.0) },
-      { name: "X7", nodes: makeNodes(3.3) },
-      { name: "iX3", nodes: makeNodes(2.8) },
-      { name: "iX", nodes: makeNodes(3.2) },
-      { name: "M2", nodes: makeNodes(3.5) },
-      { name: "M3", nodes: makeNodes(3.8) },
-      { name: "M4", nodes: makeNodes(3.9) },
-      { name: "M5", nodes: makeNodes(4.0) },
-      { name: "M8", nodes: makeNodes(4.2) },
-      { name: "Z4", nodes: makeNodes(2.8) },
+      { name: "1 серия (E87, 2004–2011)", nodes: makeNodes(1.9) },
+      { name: "1 серия (F20, 2011–2019)", nodes: makeNodes(2.0) },
+      { name: "2 серия (F22, 2013–2021)", nodes: makeNodes(2.1) },
+      { name: "2 серия Active Tourer (F45, 2014–2021)", nodes: makeNodes(2.1) },
+      { name: "3 серия (E46, 1998–2006)", nodes: makeNodes(2.0) },
+      { name: "3 серия (E90, 2005–2012)", nodes: makeNodes(2.1) },
+      { name: "3 серия (F30, 2011–2019)", nodes: makeNodes(2.2) },
+      { name: "3 серия (G20, 2018–н.в.)", nodes: makeNodes(2.3) },
+      { name: "4 серия (F32/G22, 2013–н.в.)", nodes: makeNodes(2.4) },
+      { name: "5 серия (E60, 2003–2010)", nodes: makeNodes(2.3) },
+      { name: "5 серия (F10, 2009–2017)", nodes: makeNodes(2.5) },
+      { name: "5 серия (G30, 2016–н.в.)", nodes: makeNodes(2.6) },
+      { name: "6 серия Gran Turismo (G32, 2017–н.в.)", nodes: makeNodes(2.8) },
+      { name: "7 серия (F01, 2008–2015)", nodes: makeNodes(3.0) },
+      { name: "7 серия (G11, 2015–н.в.)", nodes: makeNodes(3.2) },
+      { name: "8 серия (G15, 2018–н.в.)", nodes: makeNodes(3.5) },
+      { name: "X1 (F48, 2015–2022)", nodes: makeNodes(2.0) },
+      { name: "X1 (U11, 2022–н.в.)", nodes: makeNodes(2.1) },
+      { name: "X2 (F39, 2017–н.в.)", nodes: makeNodes(2.2) },
+      { name: "X3 (F25, 2010–2017)", nodes: makeNodes(2.4) },
+      { name: "X3 (G01, 2017–н.в.)", nodes: makeNodes(2.5) },
+      { name: "X4 (F26/G02, 2014–н.в.)", nodes: makeNodes(2.6) },
+      { name: "X5 (E70, 2006–2013)", nodes: makeNodes(2.7) },
+      { name: "X5 (F15, 2013–2018)", nodes: makeNodes(2.8) },
+      { name: "X5 (G05, 2018–н.в.)", nodes: makeNodes(2.9) },
+      { name: "X6 (E71/F16/G06, 2008–н.в.)", nodes: makeNodes(3.0) },
+      { name: "X7 (G07, 2018–н.в.)", nodes: makeNodes(3.3) },
+      { name: "iX3 (G08, 2020–н.в.)", nodes: makeNodes(2.8) },
+      { name: "iX (I20, 2021–н.в.)", nodes: makeNodes(3.2) },
+      { name: "M2 (F87/G87, 2015–н.в.)", nodes: makeNodes(3.5) },
+      { name: "M3 (E46/E90/F80/G80, 2000–н.в.)", nodes: makeNodes(3.8) },
+      { name: "M4 (F82/G82, 2014–н.в.)", nodes: makeNodes(3.9) },
+      { name: "M5 (F10/F90, 2011–н.в.)", nodes: makeNodes(4.0) },
+      { name: "M8 (F91/F92, 2019–н.в.)", nodes: makeNodes(4.2) },
+      { name: "Z4 (E89/G29, 2009–н.в.)", nodes: makeNodes(2.8) },
     ],
   },
   {
     brand: "Mercedes-Benz",
     models: [
-      { name: "A-класс (W168)", nodes: makeNodes(1.8) },
-      { name: "A-класс (W169)", nodes: makeNodes(1.9) },
-      { name: "A-класс (W176)", nodes: makeNodes(2.0) },
-      { name: "A-класс (W177)", nodes: makeNodes(2.2) },
-      { name: "B-класс", nodes: makeNodes(2.1) },
-      { name: "C-класс (W203)", nodes: makeNodes(2.2) },
-      { name: "C-класс (W204)", nodes: makeNodes(2.4) },
-      { name: "C-класс (W205)", nodes: makeNodes(2.5) },
-      { name: "C-класс (W206)", nodes: makeNodes(2.6) },
-      { name: "E-класс (W211)", nodes: makeNodes(2.5) },
-      { name: "E-класс (W212)", nodes: makeNodes(2.7) },
-      { name: "E-класс (W213)", nodes: makeNodes(2.8) },
-      { name: "S-класс (W221)", nodes: makeNodes(3.3) },
-      { name: "S-класс (W222)", nodes: makeNodes(3.4) },
-      { name: "S-класс (W223)", nodes: makeNodes(3.5) },
-      { name: "GLA (X156)", nodes: makeNodes(2.2) },
-      { name: "GLA (H247)", nodes: makeNodes(2.3) },
-      { name: "GLB", nodes: makeNodes(2.4) },
-      { name: "GLC (X253)", nodes: makeNodes(2.6) },
-      { name: "GLC (X254)", nodes: makeNodes(2.7) },
-      { name: "GLE (W166)", nodes: makeNodes(2.8) },
-      { name: "GLE (V167)", nodes: makeNodes(3.0) },
-      { name: "GLS (X167)", nodes: makeNodes(3.4) },
-      { name: "AMG GT", nodes: makeNodes(4.2) },
-      { name: "AMG C63", nodes: makeNodes(3.8) },
-      { name: "AMG E63", nodes: makeNodes(4.0) },
-      { name: "CLA", nodes: makeNodes(2.4) },
-      { name: "CLS", nodes: makeNodes(3.0) },
-      { name: "EQA", nodes: makeNodes(2.5) },
-      { name: "EQB", nodes: makeNodes(2.6) },
-      { name: "EQC", nodes: makeNodes(3.0) },
-      { name: "EQE", nodes: makeNodes(3.2) },
-      { name: "EQS", nodes: makeNodes(3.8) },
-      { name: "Vito", nodes: makeNodes(2.0) },
-      { name: "Sprinter", nodes: makeNodes(2.2) },
+      { name: "A-класс (W168, 1997–2004)", nodes: makeNodes(1.8) },
+      { name: "A-класс (W169, 2004–2012)", nodes: makeNodes(1.9) },
+      { name: "A-класс (W176, 2012–2018)", nodes: makeNodes(2.0) },
+      { name: "A-класс (W177, 2018–н.в.)", nodes: makeNodes(2.2) },
+      { name: "B-класс (W245/W246/W247, 2005–н.в.)", nodes: makeNodes(2.1) },
+      { name: "C-класс (W203, 2000–2007)", nodes: makeNodes(2.2) },
+      { name: "C-класс (W204, 2007–2014)", nodes: makeNodes(2.4) },
+      { name: "C-класс (W205, 2014–2021)", nodes: makeNodes(2.5) },
+      { name: "C-класс (W206, 2021–н.в.)", nodes: makeNodes(2.6) },
+      { name: "E-класс (W211, 2002–2009)", nodes: makeNodes(2.5) },
+      { name: "E-класс (W212, 2009–2016)", nodes: makeNodes(2.7) },
+      { name: "E-класс (W213, 2016–н.в.)", nodes: makeNodes(2.8) },
+      { name: "S-класс (W221, 2005–2013)", nodes: makeNodes(3.3) },
+      { name: "S-класс (W222, 2013–2020)", nodes: makeNodes(3.4) },
+      { name: "S-класс (W223, 2020–н.в.)", nodes: makeNodes(3.5) },
+      { name: "GLA (X156, 2013–2020)", nodes: makeNodes(2.2) },
+      { name: "GLA (H247, 2020–н.в.)", nodes: makeNodes(2.3) },
+      { name: "GLB (X247, 2019–н.в.)", nodes: makeNodes(2.4) },
+      { name: "GLC (X253, 2015–2022)", nodes: makeNodes(2.6) },
+      { name: "GLC (X254, 2022–н.в.)", nodes: makeNodes(2.7) },
+      { name: "GLE (W166, 2015–2019)", nodes: makeNodes(2.8) },
+      { name: "GLE (V167, 2019–н.в.)", nodes: makeNodes(3.0) },
+      { name: "GLS (X167, 2019–н.в.)", nodes: makeNodes(3.4) },
+      { name: "AMG GT (C190, 2014–н.в.)", nodes: makeNodes(4.2) },
+      { name: "AMG C63 (W204/W205/W206, 2011–н.в.)", nodes: makeNodes(3.8) },
+      { name: "AMG E63 (W212/W213, 2009–н.в.)", nodes: makeNodes(4.0) },
+      { name: "CLA (C117/C118, 2013–н.в.)", nodes: makeNodes(2.4) },
+      { name: "CLS (W218/W257, 2010–н.в.)", nodes: makeNodes(3.0) },
+      { name: "EQA (H243, 2021–н.в.)", nodes: makeNodes(2.5) },
+      { name: "EQB (X243, 2021–н.в.)", nodes: makeNodes(2.6) },
+      { name: "EQC (N293, 2019–н.в.)", nodes: makeNodes(3.0) },
+      { name: "EQE (V295, 2022–н.в.)", nodes: makeNodes(3.2) },
+      { name: "EQS (V297, 2021–н.в.)", nodes: makeNodes(3.8) },
+      { name: "Vito (W638/W639/W447, 1996–н.в.)", nodes: makeNodes(2.0) },
+      { name: "Sprinter (W901/W906/W910, 1995–н.в.)", nodes: makeNodes(2.2) },
     ],
   },
   {
     brand: "Audi",
     models: [
-      { name: "A1", nodes: makeNodes(1.9) },
-      { name: "A3 (8L)", nodes: makeNodes(1.8) },
-      { name: "A3 (8P)", nodes: makeNodes(1.9) },
-      { name: "A3 (8V)", nodes: makeNodes(2.0) },
-      { name: "A3 (8Y)", nodes: makeNodes(2.1) },
-      { name: "A4 (B6)", nodes: makeNodes(2.0) },
-      { name: "A4 (B7)", nodes: makeNodes(2.1) },
-      { name: "A4 (B8)", nodes: makeNodes(2.3) },
-      { name: "A4 (B9)", nodes: makeNodes(2.4) },
-      { name: "A5", nodes: makeNodes(2.6) },
-      { name: "A6 (C5)", nodes: makeNodes(2.3) },
-      { name: "A6 (C6)", nodes: makeNodes(2.5) },
-      { name: "A6 (C7)", nodes: makeNodes(2.7) },
-      { name: "A6 (C8)", nodes: makeNodes(2.8) },
-      { name: "A7", nodes: makeNodes(3.0) },
-      { name: "A8 (D3)", nodes: makeNodes(3.2) },
-      { name: "A8 (D4)", nodes: makeNodes(3.4) },
-      { name: "A8 (D5)", nodes: makeNodes(3.5) },
-      { name: "Q2", nodes: makeNodes(2.0) },
-      { name: "Q3 (8U)", nodes: makeNodes(2.1) },
-      { name: "Q3 (F3)", nodes: makeNodes(2.2) },
-      { name: "Q5 (8R)", nodes: makeNodes(2.4) },
-      { name: "Q5 (FY)", nodes: makeNodes(2.6) },
-      { name: "Q7 (4L)", nodes: makeNodes(2.8) },
-      { name: "Q7 (4M)", nodes: makeNodes(3.1) },
-      { name: "Q8", nodes: makeNodes(3.4) },
-      { name: "e-tron", nodes: makeNodes(3.0) },
-      { name: "e-tron GT", nodes: makeNodes(3.5) },
-      { name: "TT", nodes: makeNodes(2.8) },
-      { name: "R8", nodes: makeNodes(4.5) },
-      { name: "RS3", nodes: makeNodes(3.5) },
-      { name: "RS6", nodes: makeNodes(4.2) },
+      { name: "A1 (8X/GB, 2010–н.в.)", nodes: makeNodes(1.9) },
+      { name: "A3 (8L, 1996–2003)", nodes: makeNodes(1.8) },
+      { name: "A3 (8P, 2003–2012)", nodes: makeNodes(1.9) },
+      { name: "A3 (8V, 2012–2020)", nodes: makeNodes(2.0) },
+      { name: "A3 (8Y, 2020–н.в.)", nodes: makeNodes(2.1) },
+      { name: "A4 (B6, 2000–2004)", nodes: makeNodes(2.0) },
+      { name: "A4 (B7, 2004–2008)", nodes: makeNodes(2.1) },
+      { name: "A4 (B8, 2007–2015)", nodes: makeNodes(2.3) },
+      { name: "A4 (B9, 2015–н.в.)", nodes: makeNodes(2.4) },
+      { name: "A5 (8T/F5, 2007–н.в.)", nodes: makeNodes(2.6) },
+      { name: "A6 (C5, 1997–2004)", nodes: makeNodes(2.3) },
+      { name: "A6 (C6, 2004–2011)", nodes: makeNodes(2.5) },
+      { name: "A6 (C7, 2011–2018)", nodes: makeNodes(2.7) },
+      { name: "A6 (C8, 2018–н.в.)", nodes: makeNodes(2.8) },
+      { name: "A7 (4G/4K, 2010–н.в.)", nodes: makeNodes(3.0) },
+      { name: "A8 (D3, 2002–2009)", nodes: makeNodes(3.2) },
+      { name: "A8 (D4, 2009–2017)", nodes: makeNodes(3.4) },
+      { name: "A8 (D5, 2017–н.в.)", nodes: makeNodes(3.5) },
+      { name: "Q2 (GA, 2016–н.в.)", nodes: makeNodes(2.0) },
+      { name: "Q3 (8U, 2011–2018)", nodes: makeNodes(2.1) },
+      { name: "Q3 (F3, 2018–н.в.)", nodes: makeNodes(2.2) },
+      { name: "Q5 (8R, 2008–2017)", nodes: makeNodes(2.4) },
+      { name: "Q5 (FY, 2017–н.в.)", nodes: makeNodes(2.6) },
+      { name: "Q7 (4L, 2005–2015)", nodes: makeNodes(2.8) },
+      { name: "Q7 (4M, 2015–н.в.)", nodes: makeNodes(3.1) },
+      { name: "Q8 (4M, 2018–н.в.)", nodes: makeNodes(3.4) },
+      { name: "e-tron (GE, 2018–н.в.)", nodes: makeNodes(3.0) },
+      { name: "e-tron GT (F83, 2021–н.в.)", nodes: makeNodes(3.5) },
+      { name: "TT (8N/8J/FV, 1998–н.в.)", nodes: makeNodes(2.8) },
+      { name: "R8 (42/4S, 2006–н.в.)", nodes: makeNodes(4.5) },
+      { name: "RS3 (8P/8V/8Y, 2011–н.в.)", nodes: makeNodes(3.5) },
+      { name: "RS6 (C5/C6/C7/C8, 2002–н.в.)", nodes: makeNodes(4.2) },
     ],
   },
   {
     brand: "Volkswagen",
     models: [
-      { name: "Polo (4 пок.)", nodes: makeNodes(1.2) },
-      { name: "Polo (5 пок.)", nodes: makeNodes(1.3) },
-      { name: "Polo Sedan", nodes: makeNodes(1.2) },
-      { name: "Golf 5", nodes: makeNodes(1.4) },
-      { name: "Golf 6", nodes: makeNodes(1.4) },
-      { name: "Golf 7", nodes: makeNodes(1.5) },
-      { name: "Golf 8", nodes: makeNodes(1.6) },
-      { name: "Golf GTI", nodes: makeNodes(2.0) },
-      { name: "Golf R", nodes: makeNodes(2.3) },
-      { name: "Jetta 5", nodes: makeNodes(1.4) },
-      { name: "Jetta 6", nodes: makeNodes(1.5) },
-      { name: "Jetta 7", nodes: makeNodes(1.5) },
-      { name: "Passat B6", nodes: makeNodes(1.5) },
-      { name: "Passat B7", nodes: makeNodes(1.6) },
-      { name: "Passat B8", nodes: makeNodes(1.7) },
-      { name: "Passat CC", nodes: makeNodes(1.8) },
-      { name: "Tiguan (1 пок.)", nodes: makeNodes(1.7) },
-      { name: "Tiguan (2 пок.)", nodes: makeNodes(1.8) },
-      { name: "Tiguan Allspace", nodes: makeNodes(1.9) },
-      { name: "Touareg (1 пок.)", nodes: makeNodes(2.2) },
-      { name: "Touareg (2 пок.)", nodes: makeNodes(2.3) },
-      { name: "Touareg (3 пок.)", nodes: makeNodes(2.4) },
-      { name: "Arteon", nodes: makeNodes(2.0) },
-      { name: "Tayron", nodes: makeNodes(1.9) },
-      { name: "Teramont", nodes: makeNodes(2.0) },
-      { name: "Multivan", nodes: makeNodes(2.2) },
-      { name: "Caravelle", nodes: makeNodes(2.0) },
-      { name: "Transporter T5", nodes: makeNodes(1.8) },
-      { name: "Transporter T6", nodes: makeNodes(1.9) },
-      { name: "Amarok", nodes: makeNodes(2.0) },
-      { name: "Scirocco", nodes: makeNodes(1.8) },
-      { name: "Sharan", nodes: makeNodes(1.8) },
+      { name: "Polo (4 пок., 2001–2009)", nodes: makeNodes(1.2) },
+      { name: "Polo (5 пок., 2009–2017)", nodes: makeNodes(1.3) },
+      { name: "Polo Sedan (2010–2020)", nodes: makeNodes(1.2) },
+      { name: "Golf 5 (2003–2008)", nodes: makeNodes(1.4) },
+      { name: "Golf 6 (2008–2013)", nodes: makeNodes(1.4) },
+      { name: "Golf 7 (2012–2019)", nodes: makeNodes(1.5) },
+      { name: "Golf 8 (2019–н.в.)", nodes: makeNodes(1.6) },
+      { name: "Golf GTI (2004–н.в.)", nodes: makeNodes(2.0) },
+      { name: "Golf R (2010–н.в.)", nodes: makeNodes(2.3) },
+      { name: "Jetta 5 (2005–2010)", nodes: makeNodes(1.4) },
+      { name: "Jetta 6 (2010–2018)", nodes: makeNodes(1.5) },
+      { name: "Jetta 7 (2018–н.в.)", nodes: makeNodes(1.5) },
+      { name: "Passat B6 (2005–2010)", nodes: makeNodes(1.5) },
+      { name: "Passat B7 (2010–2014)", nodes: makeNodes(1.6) },
+      { name: "Passat B8 (2014–н.в.)", nodes: makeNodes(1.7) },
+      { name: "Passat CC (2008–2016)", nodes: makeNodes(1.8) },
+      { name: "Tiguan (1 пок., 2007–2016)", nodes: makeNodes(1.7) },
+      { name: "Tiguan (2 пок., 2016–н.в.)", nodes: makeNodes(1.8) },
+      { name: "Tiguan Allspace (2017–н.в.)", nodes: makeNodes(1.9) },
+      { name: "Touareg (1 пок., 2002–2010)", nodes: makeNodes(2.2) },
+      { name: "Touareg (2 пок., 2010–2018)", nodes: makeNodes(2.3) },
+      { name: "Touareg (3 пок., 2018–н.в.)", nodes: makeNodes(2.4) },
+      { name: "Arteon (2017–н.в.)", nodes: makeNodes(2.0) },
+      { name: "Tayron (2024–н.в.)", nodes: makeNodes(1.9) },
+      { name: "Teramont (2016–н.в.)", nodes: makeNodes(2.0) },
+      { name: "Multivan (T6/T7, 2015–н.в.)", nodes: makeNodes(2.2) },
+      { name: "Caravelle (T5/T6, 2003–н.в.)", nodes: makeNodes(2.0) },
+      { name: "Transporter T5 (2003–2015)", nodes: makeNodes(1.8) },
+      { name: "Transporter T6 (2015–н.в.)", nodes: makeNodes(1.9) },
+      { name: "Amarok (2010–н.в.)", nodes: makeNodes(2.0) },
+      { name: "Scirocco (2008–2017)", nodes: makeNodes(1.8) },
+      { name: "Sharan (1995–н.в.)", nodes: makeNodes(1.8) },
     ],
   },
   {
@@ -512,120 +512,120 @@ export const CAR_DATA: CarBrand[] = [
   {
     brand: "Toyota",
     models: [
-      { name: "Corolla (E120)", nodes: makeNodes(1.2) },
-      { name: "Corolla (E150)", nodes: makeNodes(1.2) },
-      { name: "Corolla (E160)", nodes: makeNodes(1.3) },
-      { name: "Corolla (E170)", nodes: makeNodes(1.3) },
-      { name: "Corolla (E210)", nodes: makeNodes(1.3) },
-      { name: "Camry (V40)", nodes: makeNodes(1.6) },
-      { name: "Camry (V50)", nodes: makeNodes(1.7) },
-      { name: "Camry (V70)", nodes: makeNodes(1.8) },
-      { name: "RAV4 (3 пок.)", nodes: makeNodes(1.5) },
-      { name: "RAV4 (4 пок.)", nodes: makeNodes(1.6) },
-      { name: "RAV4 (5 пок.)", nodes: makeNodes(1.7) },
-      { name: "Land Cruiser 100", nodes: makeNodes(2.4) },
-      { name: "Land Cruiser 200", nodes: makeNodes(2.8) },
-      { name: "Land Cruiser 300", nodes: makeNodes(3.0) },
-      { name: "Land Cruiser Prado 120", nodes: makeNodes(2.2) },
-      { name: "Land Cruiser Prado 150", nodes: makeNodes(2.4) },
-      { name: "Highlander (1 пок.)", nodes: makeNodes(1.8) },
-      { name: "Highlander (2 пок.)", nodes: makeNodes(1.9) },
-      { name: "Highlander (3 пок.)", nodes: makeNodes(2.1) },
-      { name: "C-HR", nodes: makeNodes(1.5) },
-      { name: "Hilux", nodes: makeNodes(1.9) },
-      { name: "Yaris", nodes: makeNodes(1.1) },
-      { name: "Yaris Cross", nodes: makeNodes(1.3) },
-      { name: "Fortuner", nodes: makeNodes(2.0) },
-      { name: "4Runner", nodes: makeNodes(2.2) },
-      { name: "Supra (A90)", nodes: makeNodes(3.2) },
-      { name: "Auris", nodes: makeNodes(1.3) },
-      { name: "Verso", nodes: makeNodes(1.3) },
-      { name: "Avensis", nodes: makeNodes(1.4) },
-      { name: "Prius (3 пок.)", nodes: makeNodes(1.4) },
-      { name: "Prius (4 пок.)", nodes: makeNodes(1.5) },
-      { name: "Alphard", nodes: makeNodes(2.4) },
-      { name: "Vellfire", nodes: makeNodes(2.4) },
-      { name: "Sequoia", nodes: makeNodes(2.5) },
+      { name: "Corolla (E120, 2001–2006)", nodes: makeNodes(1.2) },
+      { name: "Corolla (E150, 2006–2013)", nodes: makeNodes(1.2) },
+      { name: "Corolla (E160, 2013–2019)", nodes: makeNodes(1.3) },
+      { name: "Corolla (E170, 2013–2019)", nodes: makeNodes(1.3) },
+      { name: "Corolla (E210, 2018–н.в.)", nodes: makeNodes(1.3) },
+      { name: "Camry (V40, 2006–2011)", nodes: makeNodes(1.6) },
+      { name: "Camry (V50, 2011–2017)", nodes: makeNodes(1.7) },
+      { name: "Camry (V70, 2017–н.в.)", nodes: makeNodes(1.8) },
+      { name: "RAV4 (3 пок., 2005–2012)", nodes: makeNodes(1.5) },
+      { name: "RAV4 (4 пок., 2012–2018)", nodes: makeNodes(1.6) },
+      { name: "RAV4 (5 пок., 2018–н.в.)", nodes: makeNodes(1.7) },
+      { name: "Land Cruiser 100 (1998–2007)", nodes: makeNodes(2.4) },
+      { name: "Land Cruiser 200 (2007–2021)", nodes: makeNodes(2.8) },
+      { name: "Land Cruiser 300 (2021–н.в.)", nodes: makeNodes(3.0) },
+      { name: "Land Cruiser Prado 120 (2002–2009)", nodes: makeNodes(2.2) },
+      { name: "Land Cruiser Prado 150 (2009–н.в.)", nodes: makeNodes(2.4) },
+      { name: "Highlander (1 пок., 2000–2007)", nodes: makeNodes(1.8) },
+      { name: "Highlander (2 пок., 2007–2013)", nodes: makeNodes(1.9) },
+      { name: "Highlander (3 пок., 2013–н.в.)", nodes: makeNodes(2.1) },
+      { name: "C-HR (2016–н.в.)", nodes: makeNodes(1.5) },
+      { name: "Hilux (2004–н.в.)", nodes: makeNodes(1.9) },
+      { name: "Yaris (1999–н.в.)", nodes: makeNodes(1.1) },
+      { name: "Yaris Cross (2020–н.в.)", nodes: makeNodes(1.3) },
+      { name: "Fortuner (2004–н.в.)", nodes: makeNodes(2.0) },
+      { name: "4Runner (2002–н.в.)", nodes: makeNodes(2.2) },
+      { name: "Supra (A90, 2019–н.в.)", nodes: makeNodes(3.2) },
+      { name: "Auris (2006–2019)", nodes: makeNodes(1.3) },
+      { name: "Verso (2009–2018)", nodes: makeNodes(1.3) },
+      { name: "Avensis (1997–2018)", nodes: makeNodes(1.4) },
+      { name: "Prius (3 пок., 2009–2015)", nodes: makeNodes(1.4) },
+      { name: "Prius (4 пок., 2015–н.в.)", nodes: makeNodes(1.5) },
+      { name: "Alphard (2002–н.в.)", nodes: makeNodes(2.4) },
+      { name: "Vellfire (2008–н.в.)", nodes: makeNodes(2.4) },
+      { name: "Sequoia (2000–н.в.)", nodes: makeNodes(2.5) },
     ],
   },
   {
     brand: "Honda",
     models: [
-      { name: "Civic (7 пок.)", nodes: makeNodes(1.2) },
-      { name: "Civic (8 пок.)", nodes: makeNodes(1.2) },
-      { name: "Civic (9 пок.)", nodes: makeNodes(1.3) },
-      { name: "Civic (10 пок.)", nodes: makeNodes(1.3) },
-      { name: "Civic (11 пок.)", nodes: makeNodes(1.3) },
-      { name: "Civic Type R", nodes: makeNodes(2.2) },
-      { name: "Accord (7 пок.)", nodes: makeNodes(1.5) },
-      { name: "Accord (8 пок.)", nodes: makeNodes(1.6) },
-      { name: "Accord (9 пок.)", nodes: makeNodes(1.7) },
-      { name: "CR-V (3 пок.)", nodes: makeNodes(1.5) },
-      { name: "CR-V (4 пок.)", nodes: makeNodes(1.6) },
-      { name: "CR-V (5 пок.)", nodes: makeNodes(1.7) },
-      { name: "Pilot", nodes: makeNodes(2.0) },
-      { name: "Jazz / Fit", nodes: makeNodes(1.1) },
-      { name: "HR-V", nodes: makeNodes(1.4) },
-      { name: "ZR-V", nodes: makeNodes(1.5) },
-      { name: "Passport", nodes: makeNodes(1.9) },
-      { name: "Ridgeline", nodes: makeNodes(2.0) },
-      { name: "Odyssey", nodes: makeNodes(1.9) },
-      { name: "FR-V", nodes: makeNodes(1.3) },
+      { name: "Civic (7 пок., 2000–2005)", nodes: makeNodes(1.2) },
+      { name: "Civic (8 пок., 2005–2011)", nodes: makeNodes(1.2) },
+      { name: "Civic (9 пок., 2011–2015)", nodes: makeNodes(1.3) },
+      { name: "Civic (10 пок., 2015–2021)", nodes: makeNodes(1.3) },
+      { name: "Civic (11 пок., 2021–н.в.)", nodes: makeNodes(1.3) },
+      { name: "Civic Type R (2007–н.в.)", nodes: makeNodes(2.2) },
+      { name: "Accord (7 пок., 2002–2008)", nodes: makeNodes(1.5) },
+      { name: "Accord (8 пок., 2007–2012)", nodes: makeNodes(1.6) },
+      { name: "Accord (9 пок., 2012–2017)", nodes: makeNodes(1.7) },
+      { name: "CR-V (3 пок., 2006–2012)", nodes: makeNodes(1.5) },
+      { name: "CR-V (4 пок., 2012–2017)", nodes: makeNodes(1.6) },
+      { name: "CR-V (5 пок., 2016–н.в.)", nodes: makeNodes(1.7) },
+      { name: "Pilot (2002–н.в.)", nodes: makeNodes(2.0) },
+      { name: "Jazz / Fit (2001–н.в.)", nodes: makeNodes(1.1) },
+      { name: "HR-V (2014–н.в.)", nodes: makeNodes(1.4) },
+      { name: "ZR-V (2022–н.в.)", nodes: makeNodes(1.5) },
+      { name: "Passport (1993–н.в.)", nodes: makeNodes(1.9) },
+      { name: "Ridgeline (2005–н.в.)", nodes: makeNodes(2.0) },
+      { name: "Odyssey (1994–н.в.)", nodes: makeNodes(1.9) },
+      { name: "FR-V (2004–2009)", nodes: makeNodes(1.3) },
     ],
   },
   {
     brand: "Nissan",
     models: [
-      { name: "Almera Classic", nodes: makeNodes(1.0) },
-      { name: "Almera G15", nodes: makeNodes(1.1) },
-      { name: "Qashqai (J10)", nodes: makeNodes(1.4) },
-      { name: "Qashqai (J11)", nodes: makeNodes(1.5) },
-      { name: "Qashqai (J12)", nodes: makeNodes(1.6) },
-      { name: "X-Trail (T31)", nodes: makeNodes(1.5) },
-      { name: "X-Trail (T32)", nodes: makeNodes(1.6) },
-      { name: "Patrol (Y61)", nodes: makeNodes(2.1) },
-      { name: "Patrol (Y62)", nodes: makeNodes(2.3) },
-      { name: "Murano (Z51)", nodes: makeNodes(1.9) },
-      { name: "Murano (Z52)", nodes: makeNodes(2.0) },
-      { name: "Juke (F15)", nodes: makeNodes(1.3) },
-      { name: "Juke (F16)", nodes: makeNodes(1.4) },
-      { name: "Navara (D40)", nodes: makeNodes(1.6) },
-      { name: "Navara (D23)", nodes: makeNodes(1.7) },
-      { name: "Teana (J31)", nodes: makeNodes(1.4) },
-      { name: "Teana (J32)", nodes: makeNodes(1.5) },
-      { name: "Pathfinder (R51)", nodes: makeNodes(1.8) },
-      { name: "Note", nodes: makeNodes(1.1) },
-      { name: "Tiida", nodes: makeNodes(1.1) },
-      { name: "GT-R (R35)", nodes: makeNodes(4.0) },
-      { name: "370Z", nodes: makeNodes(2.5) },
-      { name: "350Z", nodes: makeNodes(2.3) },
-      { name: "Leaf", nodes: makeNodes(1.5) },
-      { name: "Ariya", nodes: makeNodes(2.2) },
+      { name: "Almera Classic (2006–2013)", nodes: makeNodes(1.0) },
+      { name: "Almera G15 (2012–н.в.)", nodes: makeNodes(1.1) },
+      { name: "Qashqai (J10, 2006–2013)", nodes: makeNodes(1.4) },
+      { name: "Qashqai (J11, 2013–2021)", nodes: makeNodes(1.5) },
+      { name: "Qashqai (J12, 2021–н.в.)", nodes: makeNodes(1.6) },
+      { name: "X-Trail (T31, 2007–2014)", nodes: makeNodes(1.5) },
+      { name: "X-Trail (T32, 2013–н.в.)", nodes: makeNodes(1.6) },
+      { name: "Patrol (Y61, 1997–2010)", nodes: makeNodes(2.1) },
+      { name: "Patrol (Y62, 2010–н.в.)", nodes: makeNodes(2.3) },
+      { name: "Murano (Z51, 2007–2016)", nodes: makeNodes(1.9) },
+      { name: "Murano (Z52, 2014–н.в.)", nodes: makeNodes(2.0) },
+      { name: "Juke (F15, 2010–2019)", nodes: makeNodes(1.3) },
+      { name: "Juke (F16, 2019–н.в.)", nodes: makeNodes(1.4) },
+      { name: "Navara (D40, 2004–2015)", nodes: makeNodes(1.6) },
+      { name: "Navara (D23, 2014–н.в.)", nodes: makeNodes(1.7) },
+      { name: "Teana (J31, 2003–2008)", nodes: makeNodes(1.4) },
+      { name: "Teana (J32, 2008–2013)", nodes: makeNodes(1.5) },
+      { name: "Pathfinder (R51, 2004–2012)", nodes: makeNodes(1.8) },
+      { name: "Note (E11/E12, 2004–н.в.)", nodes: makeNodes(1.1) },
+      { name: "Tiida (C11/C12, 2004–2014)", nodes: makeNodes(1.1) },
+      { name: "GT-R (R35, 2007–н.в.)", nodes: makeNodes(4.0) },
+      { name: "370Z (Z34, 2008–2021)", nodes: makeNodes(2.5) },
+      { name: "350Z (Z33, 2002–2009)", nodes: makeNodes(2.3) },
+      { name: "Leaf (ZE0/ZE1, 2010–н.в.)", nodes: makeNodes(1.5) },
+      { name: "Ariya (FE0, 2021–н.в.)", nodes: makeNodes(2.2) },
     ],
   },
   {
     brand: "Mazda",
     models: [
-      { name: "Mazda 2 (DJ)", nodes: makeNodes(1.1) },
-      { name: "Mazda 3 (BK)", nodes: makeNodes(1.2) },
-      { name: "Mazda 3 (BL)", nodes: makeNodes(1.2) },
-      { name: "Mazda 3 (BM)", nodes: makeNodes(1.3) },
-      { name: "Mazda 3 (BP)", nodes: makeNodes(1.3) },
-      { name: "Mazda 6 (GG)", nodes: makeNodes(1.3) },
-      { name: "Mazda 6 (GH)", nodes: makeNodes(1.4) },
-      { name: "Mazda 6 (GJ)", nodes: makeNodes(1.5) },
-      { name: "Mazda 6 (GL)", nodes: makeNodes(1.6) },
-      { name: "CX-3", nodes: makeNodes(1.3) },
-      { name: "CX-30", nodes: makeNodes(1.5) },
-      { name: "CX-5 (KE)", nodes: makeNodes(1.6) },
-      { name: "CX-5 (KF)", nodes: makeNodes(1.7) },
-      { name: "CX-7", nodes: makeNodes(1.6) },
-      { name: "CX-9 (TB)", nodes: makeNodes(1.8) },
-      { name: "CX-9 (TC)", nodes: makeNodes(2.0) },
-      { name: "CX-60", nodes: makeNodes(2.0) },
-      { name: "MX-5 (NC)", nodes: makeNodes(2.0) },
-      { name: "MX-5 (ND)", nodes: makeNodes(2.2) },
-      { name: "RX-8", nodes: makeNodes(2.5) },
+      { name: "Mazda 2 (DJ, 2014–н.в.)", nodes: makeNodes(1.1) },
+      { name: "Mazda 3 (BK, 2003–2009)", nodes: makeNodes(1.2) },
+      { name: "Mazda 3 (BL, 2009–2013)", nodes: makeNodes(1.2) },
+      { name: "Mazda 3 (BM, 2013–2018)", nodes: makeNodes(1.3) },
+      { name: "Mazda 3 (BP, 2019–н.в.)", nodes: makeNodes(1.3) },
+      { name: "Mazda 6 (GG, 2002–2007)", nodes: makeNodes(1.3) },
+      { name: "Mazda 6 (GH, 2007–2012)", nodes: makeNodes(1.4) },
+      { name: "Mazda 6 (GJ, 2012–2018)", nodes: makeNodes(1.5) },
+      { name: "Mazda 6 (GL, 2018–н.в.)", nodes: makeNodes(1.6) },
+      { name: "CX-3 (2015–н.в.)", nodes: makeNodes(1.3) },
+      { name: "CX-30 (2019–н.в.)", nodes: makeNodes(1.5) },
+      { name: "CX-5 (KE, 2011–2017)", nodes: makeNodes(1.6) },
+      { name: "CX-5 (KF, 2017–н.в.)", nodes: makeNodes(1.7) },
+      { name: "CX-7 (2006–2012)", nodes: makeNodes(1.6) },
+      { name: "CX-9 (TB, 2006–2015)", nodes: makeNodes(1.8) },
+      { name: "CX-9 (TC, 2016–н.в.)", nodes: makeNodes(2.0) },
+      { name: "CX-60 (2022–н.в.)", nodes: makeNodes(2.0) },
+      { name: "MX-5 (NC, 2005–2015)", nodes: makeNodes(2.0) },
+      { name: "MX-5 (ND, 2015–н.в.)", nodes: makeNodes(2.2) },
+      { name: "RX-8 (2002–2012)", nodes: makeNodes(2.5) },
     ],
   },
   {
@@ -751,66 +751,66 @@ export const CAR_DATA: CarBrand[] = [
   {
     brand: "Hyundai",
     models: [
-      { name: "Solaris (1 пок.)", nodes: makeNodes(1.0) },
-      { name: "Solaris (2 пок.)", nodes: makeNodes(1.0) },
-      { name: "Elantra (HD)", nodes: makeNodes(1.0) },
-      { name: "Elantra (MD)", nodes: makeNodes(1.0) },
-      { name: "Elantra (AD)", nodes: makeNodes(1.1) },
-      { name: "Elantra (CN7)", nodes: makeNodes(1.1) },
-      { name: "i30 (FD)", nodes: makeNodes(1.0) },
-      { name: "i30 (GD)", nodes: makeNodes(1.1) },
-      { name: "i30 (PD)", nodes: makeNodes(1.1) },
-      { name: "i20", nodes: makeNodes(0.9) },
-      { name: "Tucson (JM)", nodes: makeNodes(1.3) },
-      { name: "Tucson (TL)", nodes: makeNodes(1.4) },
-      { name: "Tucson (NX4)", nodes: makeNodes(1.4) },
-      { name: "Creta (GS)", nodes: makeNodes(1.2) },
-      { name: "Creta (SU2)", nodes: makeNodes(1.2) },
-      { name: "Santa Fe (CM)", nodes: makeNodes(1.5) },
-      { name: "Santa Fe (DM)", nodes: makeNodes(1.6) },
-      { name: "Santa Fe (TM)", nodes: makeNodes(1.7) },
-      { name: "Palisade", nodes: makeNodes(2.0) },
-      { name: "IONIQ 5", nodes: makeNodes(1.8) },
-      { name: "IONIQ 6", nodes: makeNodes(1.9) },
-      { name: "Sonata (NF)", nodes: makeNodes(1.3) },
-      { name: "Sonata (YF)", nodes: makeNodes(1.4) },
-      { name: "Sonata (LF)", nodes: makeNodes(1.5) },
-      { name: "Sonata (DN8)", nodes: makeNodes(1.5) },
-      { name: "Genesis G80 (DH)", nodes: makeNodes(2.4) },
-      { name: "ix35", nodes: makeNodes(1.3) },
-      { name: "Accent / Verna", nodes: makeNodes(0.9) },
-      { name: "Grandeur (IG)", nodes: makeNodes(2.0) },
-      { name: "Starex / H-1", nodes: makeNodes(1.5) },
+      { name: "Solaris (1 пок., 2010–2017)", nodes: makeNodes(1.0) },
+      { name: "Solaris (2 пок., 2017–н.в.)", nodes: makeNodes(1.0) },
+      { name: "Elantra (HD, 2006–2010)", nodes: makeNodes(1.0) },
+      { name: "Elantra (MD, 2010–2016)", nodes: makeNodes(1.0) },
+      { name: "Elantra (AD, 2015–2020)", nodes: makeNodes(1.1) },
+      { name: "Elantra (CN7, 2020–н.в.)", nodes: makeNodes(1.1) },
+      { name: "i30 (FD, 2007–2012)", nodes: makeNodes(1.0) },
+      { name: "i30 (GD, 2011–2017)", nodes: makeNodes(1.1) },
+      { name: "i30 (PD, 2017–н.в.)", nodes: makeNodes(1.1) },
+      { name: "i20 (2008–н.в.)", nodes: makeNodes(0.9) },
+      { name: "Tucson (JM, 2004–2010)", nodes: makeNodes(1.3) },
+      { name: "Tucson (TL, 2015–2021)", nodes: makeNodes(1.4) },
+      { name: "Tucson (NX4, 2020–н.в.)", nodes: makeNodes(1.4) },
+      { name: "Creta (GS, 2015–2021)", nodes: makeNodes(1.2) },
+      { name: "Creta (SU2, 2021–н.в.)", nodes: makeNodes(1.2) },
+      { name: "Santa Fe (CM, 2006–2012)", nodes: makeNodes(1.5) },
+      { name: "Santa Fe (DM, 2012–2018)", nodes: makeNodes(1.6) },
+      { name: "Santa Fe (TM, 2018–н.в.)", nodes: makeNodes(1.7) },
+      { name: "Palisade (2018–н.в.)", nodes: makeNodes(2.0) },
+      { name: "IONIQ 5 (2021–н.в.)", nodes: makeNodes(1.8) },
+      { name: "IONIQ 6 (2022–н.в.)", nodes: makeNodes(1.9) },
+      { name: "Sonata (NF, 2004–2010)", nodes: makeNodes(1.3) },
+      { name: "Sonata (YF, 2009–2014)", nodes: makeNodes(1.4) },
+      { name: "Sonata (LF, 2014–2019)", nodes: makeNodes(1.5) },
+      { name: "Sonata (DN8, 2019–н.в.)", nodes: makeNodes(1.5) },
+      { name: "Genesis G80 (DH, 2013–2016)", nodes: makeNodes(2.4) },
+      { name: "ix35 (2009–2015)", nodes: makeNodes(1.3) },
+      { name: "Accent / Verna (2005–н.в.)", nodes: makeNodes(0.9) },
+      { name: "Grandeur (IG, 2016–н.в.)", nodes: makeNodes(2.0) },
+      { name: "Starex / H-1 (1997–н.в.)", nodes: makeNodes(1.5) },
     ],
   },
   {
     brand: "Kia",
     models: [
-      { name: "Rio (2 пок.)", nodes: makeNodes(0.9) },
-      { name: "Rio (3 пок.)", nodes: makeNodes(1.0) },
-      { name: "Rio (4 пок.)", nodes: makeNodes(1.0) },
-      { name: "Cerato (1 пок.)", nodes: makeNodes(1.0) },
-      { name: "Cerato (2 пок.)", nodes: makeNodes(1.1) },
-      { name: "Cerato (3 пок.)", nodes: makeNodes(1.1) },
-      { name: "Ceed (1 пок.)", nodes: makeNodes(1.0) },
-      { name: "Ceed (2 пок.)", nodes: makeNodes(1.1) },
-      { name: "Ceed (3 пок.)", nodes: makeNodes(1.1) },
-      { name: "Sportage (2 пок.)", nodes: makeNodes(1.3) },
-      { name: "Sportage (3 пок.)", nodes: makeNodes(1.4) },
-      { name: "Sportage (4 пок.)", nodes: makeNodes(1.4) },
-      { name: "Sportage (5 пок.)", nodes: makeNodes(1.4) },
-      { name: "Sorento (1 пок.)", nodes: makeNodes(1.5) },
-      { name: "Sorento (2 пок.)", nodes: makeNodes(1.6) },
-      { name: "Sorento (3 пок.)", nodes: makeNodes(1.7) },
-      { name: "Stinger", nodes: makeNodes(2.2) },
-      { name: "Mohave", nodes: makeNodes(2.0) },
-      { name: "EV6", nodes: makeNodes(1.9) },
-      { name: "EV9", nodes: makeNodes(2.2) },
-      { name: "K5 / Optima", nodes: makeNodes(1.5) },
-      { name: "Carnival", nodes: makeNodes(1.8) },
-      { name: "Picanto", nodes: makeNodes(0.9) },
-      { name: "Soul", nodes: makeNodes(1.2) },
-      { name: "Telluride", nodes: makeNodes(2.0) },
+      { name: "Rio (2 пок., 2005–2011)", nodes: makeNodes(0.9) },
+      { name: "Rio (3 пок., 2011–2017)", nodes: makeNodes(1.0) },
+      { name: "Rio (4 пок., 2017–н.в.)", nodes: makeNodes(1.0) },
+      { name: "Cerato (1 пок., 2003–2008)", nodes: makeNodes(1.0) },
+      { name: "Cerato (2 пок., 2008–2013)", nodes: makeNodes(1.1) },
+      { name: "Cerato (3 пок., 2013–н.в.)", nodes: makeNodes(1.1) },
+      { name: "Ceed (1 пок., 2006–2012)", nodes: makeNodes(1.0) },
+      { name: "Ceed (2 пок., 2012–2018)", nodes: makeNodes(1.1) },
+      { name: "Ceed (3 пок., 2018–н.в.)", nodes: makeNodes(1.1) },
+      { name: "Sportage (2 пок., 2004–2010)", nodes: makeNodes(1.3) },
+      { name: "Sportage (3 пок., 2010–2016)", nodes: makeNodes(1.4) },
+      { name: "Sportage (4 пок., 2015–2021)", nodes: makeNodes(1.4) },
+      { name: "Sportage (5 пок., 2021–н.в.)", nodes: makeNodes(1.4) },
+      { name: "Sorento (1 пок., 2002–2009)", nodes: makeNodes(1.5) },
+      { name: "Sorento (2 пок., 2009–2014)", nodes: makeNodes(1.6) },
+      { name: "Sorento (3 пок., 2014–н.в.)", nodes: makeNodes(1.7) },
+      { name: "Stinger (2017–н.в.)", nodes: makeNodes(2.2) },
+      { name: "Mohave (2007–н.в.)", nodes: makeNodes(2.0) },
+      { name: "EV6 (2021–н.в.)", nodes: makeNodes(1.9) },
+      { name: "EV9 (2023–н.в.)", nodes: makeNodes(2.2) },
+      { name: "K5 / Optima (2010–н.в.)", nodes: makeNodes(1.5) },
+      { name: "Carnival (2021–н.в.)", nodes: makeNodes(1.8) },
+      { name: "Picanto (2004–н.в.)", nodes: makeNodes(0.9) },
+      { name: "Soul (2008–н.в.)", nodes: makeNodes(1.2) },
+      { name: "Telluride (2019–н.в.)", nodes: makeNodes(2.0) },
     ],
   },
   {
@@ -924,14 +924,19 @@ export const CAR_DATA: CarBrand[] = [
   {
     brand: "Renault",
     models: [
-      { name: "Logan", nodes: makeNodes(0.9) },
-      { name: "Sandero", nodes: makeNodes(0.9) },
-      { name: "Duster", nodes: makeNodes(1.1) },
-      { name: "Megane", nodes: makeNodes(1.2) },
-      { name: "Arkana", nodes: makeNodes(1.3) },
-      { name: "Koleos", nodes: makeNodes(1.5) },
-      { name: "Captur", nodes: makeNodes(1.1) },
-      { name: "Kadjar", nodes: makeNodes(1.3) },
+      { name: "Logan (1 пок., 2004–2014)", nodes: makeNodes(0.9) },
+      { name: "Logan (2 пок., 2013–н.в.)", nodes: makeNodes(0.9) },
+      { name: "Sandero (1 пок., 2008–2014)", nodes: makeNodes(0.9) },
+      { name: "Sandero (2 пок., 2012–н.в.)", nodes: makeNodes(0.9) },
+      { name: "Duster (1 пок., 2010–2018)", nodes: makeNodes(1.1) },
+      { name: "Duster (2 пок., 2017–н.в.)", nodes: makeNodes(1.1) },
+      { name: "Megane (2 пок., 2002–2009)", nodes: makeNodes(1.2) },
+      { name: "Megane (3 пок., 2008–2016)", nodes: makeNodes(1.2) },
+      { name: "Megane (4 пок., 2015–н.в.)", nodes: makeNodes(1.2) },
+      { name: "Arkana (2019–н.в.)", nodes: makeNodes(1.3) },
+      { name: "Koleos (2007–н.в.)", nodes: makeNodes(1.5) },
+      { name: "Captur (2013–н.в.)", nodes: makeNodes(1.1) },
+      { name: "Kadjar (2015–н.в.)", nodes: makeNodes(1.3) },
     ],
   },
   {
@@ -1082,13 +1087,17 @@ export const CAR_DATA: CarBrand[] = [
   {
     brand: "Škoda",
     models: [
-      { name: "Fabia", nodes: makeNodes(1.0) },
-      { name: "Rapid", nodes: makeNodes(1.0) },
-      { name: "Octavia", nodes: makeNodes(1.2) },
-      { name: "Superb", nodes: makeNodes(1.5) },
-      { name: "Karoq", nodes: makeNodes(1.4) },
-      { name: "Kodiaq", nodes: makeNodes(1.7) },
-      { name: "Enyaq", nodes: makeNodes(1.8) },
+      { name: "Fabia (1 пок., 1999–2007)", nodes: makeNodes(1.0) },
+      { name: "Fabia (2 пок., 2006–2014)", nodes: makeNodes(1.0) },
+      { name: "Fabia (3 пок., 2014–н.в.)", nodes: makeNodes(1.0) },
+      { name: "Rapid (2012–2020)", nodes: makeNodes(1.0) },
+      { name: "Octavia (A5, 2004–2013)", nodes: makeNodes(1.2) },
+      { name: "Octavia (A7, 2012–2020)", nodes: makeNodes(1.2) },
+      { name: "Octavia (A8, 2020–н.в.)", nodes: makeNodes(1.2) },
+      { name: "Superb (B6/B8, 2008–н.в.)", nodes: makeNodes(1.5) },
+      { name: "Karoq (2017–н.в.)", nodes: makeNodes(1.4) },
+      { name: "Kodiaq (2016–н.в.)", nodes: makeNodes(1.7) },
+      { name: "Enyaq (2020–н.в.)", nodes: makeNodes(1.8) },
     ],
   },
   // ══ РУМЫНСКИЕ/ПРОЧИЕ ЕВРОПЕЙСКИЕ ══
@@ -1124,13 +1133,13 @@ export const CAR_DATA: CarBrand[] = [
   {
     brand: "Lada",
     models: [
-      { name: "Granta", nodes: makeNodes(0.7) },
-      { name: "Vesta", nodes: makeNodes(0.8) },
-      { name: "XRAY", nodes: makeNodes(0.8) },
-      { name: "Niva Legend", nodes: makeNodes(0.7) },
-      { name: "Niva Travel", nodes: makeNodes(0.8) },
-      { name: "Largus", nodes: makeNodes(0.7) },
-      { name: "Kalina", nodes: makeNodes(0.6) },
+      { name: "Granta (2011–н.в.)", nodes: makeNodes(0.7) },
+      { name: "Vesta (2015–н.в.)", nodes: makeNodes(0.8) },
+      { name: "XRAY (2015–н.в.)", nodes: makeNodes(0.8) },
+      { name: "Niva Legend (1977–н.в.)", nodes: makeNodes(0.7) },
+      { name: "Niva Travel (2020–н.в.)", nodes: makeNodes(0.8) },
+      { name: "Largus (2012–н.в.)", nodes: makeNodes(0.7) },
+      { name: "Kalina (2004–2018)", nodes: makeNodes(0.6) },
     ],
   },
   {
@@ -1385,6 +1394,122 @@ export const CAR_DATA: CarBrand[] = [
       { name: "3", nodes: makeNodes(0.9) },
       { name: "3e", nodes: makeNodes(1.0) },
       { name: "6", nodes: makeNodes(1.0) },
+    ],
+  },
+  // ══ ДОПОЛНИТЕЛЬНЫЕ ══
+  {
+    brand: "Volkswagen ID.",
+    models: [
+      { name: "ID.3 (2019–н.в.)", nodes: makeNodes(1.6) },
+      { name: "ID.4 (2020–н.в.)", nodes: makeNodes(1.8) },
+      { name: "ID.6 (2021–н.в.)", nodes: makeNodes(2.0) },
+    ],
+  },
+  {
+    brand: "Toyota (коммерческие)",
+    models: [
+      { name: "HiAce (H200, 2004–н.в.)", nodes: makeNodes(1.8) },
+      { name: "ProAce (2013–н.в.)", nodes: makeNodes(1.6) },
+    ],
+  },
+  {
+    brand: "Kia (новые)",
+    models: [
+      { name: "Niro (2016–2022)", nodes: makeNodes(1.3) },
+      { name: "Niro (2022–н.в.)", nodes: makeNodes(1.4) },
+      { name: "XCeed (2019–н.в.)", nodes: makeNodes(1.4) },
+    ],
+  },
+  {
+    brand: "Hyundai (новые)",
+    models: [
+      { name: "Bayon (2021–н.в.)", nodes: makeNodes(1.1) },
+      { name: "Staria (2021–н.в.)", nodes: makeNodes(1.8) },
+    ],
+  },
+  {
+    brand: "Mazda (новые)",
+    models: [
+      { name: "CX-50 (2022–н.в.)", nodes: makeNodes(1.8) },
+      { name: "CX-80 (2024–н.в.)", nodes: makeNodes(2.2) },
+    ],
+  },
+  {
+    brand: "Honda (новые)",
+    models: [
+      { name: "e:Ny1 (2023–н.в.)", nodes: makeNodes(1.8) },
+      { name: "WR-V (2023–н.в.)", nodes: makeNodes(1.3) },
+    ],
+  },
+  {
+    brand: "Nissan (новые)",
+    models: [
+      { name: "Kicks (2016–н.в.)", nodes: makeNodes(1.3) },
+      { name: "Terra (2017–н.в.)", nodes: makeNodes(1.8) },
+    ],
+  },
+  {
+    brand: "Subaru (новые)",
+    models: [
+      { name: "Solterra (2022–н.в.)", nodes: makeNodes(1.8) },
+      { name: "Crosstrek (2023–н.в.)", nodes: makeNodes(1.6) },
+    ],
+  },
+  {
+    brand: "Audi (новые)",
+    models: [
+      { name: "Q4 e-tron (2021–н.в.)", nodes: makeNodes(2.2) },
+      { name: "A6 e-tron (2024–н.в.)", nodes: makeNodes(2.5) },
+    ],
+  },
+  {
+    brand: "Porsche (новые)",
+    models: [
+      { name: "Cayenne E-Hybrid (2023–н.в.)", nodes: makeNodes(3.8) },
+      { name: "Macan Electric (2024–н.в.)", nodes: makeNodes(3.2) },
+    ],
+  },
+  {
+    brand: "Ford (новые)",
+    models: [
+      { name: "Puma (2019–н.в.)", nodes: makeNodes(1.1) },
+      { name: "Kuga (2019–н.в.)", nodes: makeNodes(1.5) },
+      { name: "Bronco (2021–н.в.)", nodes: makeNodes(2.3) },
+    ],
+  },
+  {
+    brand: "Chevrolet (новые)",
+    models: [
+      { name: "Trailblazer (2020–н.в.)", nodes: makeNodes(1.5) },
+      { name: "Blazer EV (2023–н.в.)", nodes: makeNodes(2.0) },
+    ],
+  },
+  {
+    brand: "Zeekr",
+    models: [
+      { name: "001 (2021–н.в.)", nodes: makeNodes(1.8) },
+      { name: "X (2023–н.в.)", nodes: makeNodes(1.6) },
+    ],
+  },
+  {
+    brand: "Xpeng",
+    models: [
+      { name: "P7 (2020–н.в.)", nodes: makeNodes(1.7) },
+      { name: "G9 (2022–н.в.)", nodes: makeNodes(2.0) },
+    ],
+  },
+  {
+    brand: "Nio",
+    models: [
+      { name: "ES6 (2019–н.в.)", nodes: makeNodes(2.0) },
+      { name: "ET5 (2022–н.в.)", nodes: makeNodes(1.8) },
+    ],
+  },
+  {
+    brand: "Lada (новые)",
+    models: [
+      { name: "Aura (2024–н.в.)", nodes: makeNodes(0.9) },
+      { name: "e-Largus (2024–н.в.)", nodes: makeNodes(0.8) },
     ],
   },
 ];
