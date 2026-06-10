@@ -1,0 +1,13 @@
+{
+  "tests": [
+    {
+      "name": "Wrong credentials",
+      "method": "POST",
+      "path": "/",
+      "body": {"username": "wrong", "password": "wrong"},
+      "expectedStatus": 401,
+      "expectedBody": {"error": "Неверный логин или пароль"},
+      "bodyMatcher": "partial"
+    }
+  ]
+}

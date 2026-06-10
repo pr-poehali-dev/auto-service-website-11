@@ -1,0 +1,22 @@
+{
+  "tests": [
+    {
+      "name": "Submit request - missing fields",
+      "method": "POST",
+      "path": "/",
+      "body": {"name": "", "phone": ""},
+      "expectedStatus": 400,
+      "expectedBody": {"error": "Имя и телефон обязательны"},
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Submit request - success",
+      "method": "POST",
+      "path": "/",
+      "body": {"name": "Тест", "phone": "+79001234567", "car_brand": "Toyota", "car_model": "Camry", "selected_works": "Замена масла"},
+      "expectedStatus": 200,
+      "expectedBody": {"ok": true},
+      "bodyMatcher": "partial"
+    }
+  ]
+}
