@@ -26,7 +26,15 @@ def handler(event: dict, context) -> dict:
         return {
             'statusCode': 401,
             'headers': {'Access-Control-Allow-Origin': '*'},
-            'body': json.dumps({'error': 'Неверный логин или пароль'})
+            'body': json.dumps({
+                'error': 'Неверный логин или пароль',
+                'debug_user_match': username == admin_user,
+                'debug_pass_match': password == admin_pass,
+                'debug_got_user': repr(username),
+                'debug_expected_user': repr(admin_user),
+                'debug_pass_len_got': len(password),
+                'debug_pass_len_expected': len(admin_pass),
+            })
         }
 
     token = os.environ.get('ADMIN_TOKEN', '')
