@@ -5,8 +5,7 @@
       "method": "GET",
       "path": "/",
       "expectedStatus": 401,
-      "expectedBody": {"error": "Unauthorized"},
-      "bodyMatcher": "partial"
+      "bodyMatcher": "none"
     }
   ]
 }

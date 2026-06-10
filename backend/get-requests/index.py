@@ -8,8 +8,9 @@ def handler(event: dict, context) -> dict:
     if event.get('httpMethod') == 'OPTIONS':
         return {'statusCode': 200, 'headers': {'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET, OPTIONS', 'Access-Control-Allow-Headers': 'Content-Type, X-Admin-Token', 'Access-Control-Max-Age': '86400'}, 'body': ''}
 
-    token = event.get('headers', {}).get('X-Admin-Token') or event.get('headers', {}).get('x-admin-token')
-    if token != os.environ.get('ADMIN_TOKEN'):
+    expected = os.environ.get('ADMIN_TOKEN', '')
+    token = event.get('headers', {}).get('X-Admin-Token') or event.get('headers', {}).get('x-admin-token') or ''
+    if not expected or token != expected:
         return {
             'statusCode': 401,
             'headers': {'Access-Control-Allow-Origin': '*'},

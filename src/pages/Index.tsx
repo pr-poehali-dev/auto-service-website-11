@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useRef } from "react";
 import Icon from "@/components/ui/icon";
 import {
   ALL_BRANDS,
@@ -152,6 +152,57 @@ export default function Index() {
 
   const totalMin = selectedWorks.reduce((s, w) => s + w.price[0], 0);
   const totalMax = selectedWorks.reduce((s, w) => s + w.price[1], 0);
+
+  // Request form state
+  const [reqName, setReqName] = useState("");
+  const [reqPhone, setReqPhone] = useState("");
+  const [reqSubmitting, setReqSubmitting] = useState(false);
+  const [reqSuccess, setReqSuccess] = useState(false);
+  const [reqError, setReqError] = useState("");
+  const submitUrlRef = useRef<string | null>(null);
+
+  useEffect(() => {
+    fetch("/func2url.json").then(r => r.json()).then(d => {
+      submitUrlRef.current = d["submit-request"] || null;
+    }).catch(() => {});
+  }, []);
+
+  const handleSubmitRequest = async () => {
+    if (!reqName.trim() || !reqPhone.trim()) {
+      setReqError("Пожалуйста, заполните имя и телефон");
+      return;
+    }
+    setReqError("");
+    setReqSubmitting(true);
+    try {
+      const url = submitUrlRef.current;
+      if (!url) throw new Error("no url");
+      const worksText = selectedWorks.map(w => w.name).join(", ");
+      const res = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: reqName.trim(),
+          phone: reqPhone.trim(),
+          car_brand: calcBrand,
+          car_model: calcModel,
+          selected_works: worksText,
+        }),
+      });
+      const data = await res.json();
+      if (data.ok) {
+        setReqSuccess(true);
+        setReqName("");
+        setReqPhone("");
+      } else {
+        setReqError(data.error || "Ошибка отправки");
+      }
+    } catch {
+      setReqError("Не удалось отправить заявку. Позвоните нам напрямую.");
+    } finally {
+      setReqSubmitting(false);
+    }
+  };
 
   const acceptCookie = () => {
     localStorage.setItem("cookie_accepted", "1");
@@ -936,41 +987,86 @@ export default function Index() {
                         </p>
                       </div>
                     </div>
-                    <div className="bg-zinc-50 p-4 mb-4 space-y-2">
+                    {/* Request form */}
+                    {reqSuccess ? (
+                      <div className="border-2 border-emerald-500 bg-emerald-50 p-6 text-center">
+                        <div className="w-12 h-12 bg-emerald-500 flex items-center justify-center mx-auto mb-3">
+                          <Icon name="Check" size={22} className="text-white" />
+                        </div>
+                        <p className="font-semibold text-zinc-900 mb-1">Заявка отправлена!</p>
+                        <p className="text-zinc-500 text-sm">Мы свяжемся с вами в ближайшее время</p>
+                        <button
+                          onClick={() => { setReqSuccess(false); setSelectedWorks([]); }}
+                          className="mt-4 text-xs text-zinc-400 hover:text-zinc-900 transition-colors"
+                        >
+                          Новый расчёт
+                        </button>
+                      </div>
+                    ) : (
+                      <div className="border border-zinc-200 p-5 space-y-3">
+                        <p className="text-xs font-medium uppercase tracking-wider text-zinc-500 mb-1">Оставить заявку</p>
+                        <input
+                          type="text"
+                          placeholder="Ваше имя"
+                          value={reqName}
+                          onChange={e => setReqName(e.target.value)}
+                          className="w-full border-2 border-zinc-200 px-4 py-3 text-sm focus:outline-none focus:border-zinc-900 transition-colors"
+                        />
+                        <input
+                          type="tel"
+                          placeholder="Номер телефона"
+                          value={reqPhone}
+                          onChange={e => setReqPhone(e.target.value)}
+                          className="w-full border-2 border-zinc-200 px-4 py-3 text-sm focus:outline-none focus:border-zinc-900 transition-colors"
+                        />
+                        {reqError && (
+                          <p className="text-red-500 text-xs">{reqError}</p>
+                        )}
+                        <button
+                          onClick={handleSubmitRequest}
+                          disabled={reqSubmitting}
+                          className="w-full bg-zinc-900 text-white py-3 font-semibold text-sm hover:bg-zinc-700 transition-colors disabled:opacity-50 flex items-center justify-center gap-2"
+                        >
+                          {reqSubmitting ? (
+                            <><Icon name="Loader" size={15} className="animate-spin" /> Отправка...</>
+                          ) : (
+                            <><Icon name="Send" size={15} /> Отправить заявку</>
+                          )}
+                        </button>
+                        <div className="flex items-center gap-2">
+                          <div className="flex-1 h-px bg-zinc-200" />
+                          <span className="text-xs text-zinc-400">или</span>
+                          <div className="flex-1 h-px bg-zinc-200" />
+                        </div>
+                        <a
+                          href="tel:+79104441149"
+                          className="w-full border border-zinc-300 py-2.5 font-medium text-sm hover:border-zinc-900 transition-all flex items-center justify-center gap-2 text-zinc-600"
+                        >
+                          <Icon name="Phone" size={14} />
+                          +7 (910) 444-11-49
+                        </a>
+                      </div>
+                    )}
+                    <div className="bg-zinc-50 p-4 mt-3 space-y-2">
                       {[
                         "Стоимость указана за работу",
                         "Запчасти — отдельно при осмотре",
                         "Гарантия 12 месяцев на все работы",
                       ].map((item, i) => (
-                        <div
-                          key={i}
-                          className="flex items-center gap-3 text-sm text-zinc-600"
-                        >
+                        <div key={i} className="flex items-center gap-3 text-sm text-zinc-600">
                           <div className="w-1.5 h-1.5 bg-zinc-900 flex-shrink-0" />
                           {item}
                         </div>
                       ))}
                     </div>
-                    <a
-                      href="tel:+79104441149"
-                      className="w-full border-2 border-zinc-900 py-3 font-semibold text-sm hover:bg-zinc-900 hover:text-white transition-all flex items-center justify-center gap-2 mb-2"
-                    >
-                      <Icon name="Phone" size={15} />
-                      +7 (910) 444-11-49
-                    </a>
-                    <a
-                      href="tel:+79854912526"
-                      className="w-full border border-zinc-300 py-3 font-medium text-sm hover:border-zinc-900 transition-all flex items-center justify-center gap-2 text-zinc-600"
-                    >
-                      <Icon name="Phone" size={14} />
-                      +7 (985) 491-25-26
-                    </a>
-                    <button
-                      onClick={() => setSelectedWorks([])}
-                      className="w-full mt-3 text-xs text-zinc-400 hover:text-zinc-900 transition-colors py-1"
-                    >
-                      Очистить список
-                    </button>
+                    {!reqSuccess && (
+                      <button
+                        onClick={() => setSelectedWorks([])}
+                        className="w-full mt-3 text-xs text-zinc-400 hover:text-zinc-900 transition-colors py-1"
+                      >
+                        Очистить список
+                      </button>
+                    )}
                   </div>
                 ) : (
                   <div className="md:sticky md:top-24">
