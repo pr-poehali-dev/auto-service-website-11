@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo, useRef } from "react";
+import { useState, useEffect, useMemo } from "react";
 import Icon from "@/components/ui/icon";
 import {
   ALL_BRANDS,
@@ -159,13 +159,7 @@ export default function Index() {
   const [reqSubmitting, setReqSubmitting] = useState(false);
   const [reqSuccess, setReqSuccess] = useState(false);
   const [reqError, setReqError] = useState("");
-  const submitUrlRef = useRef<string | null>(null);
-
-  useEffect(() => {
-    fetch("/func2url.json").then(r => r.json()).then(d => {
-      submitUrlRef.current = d["submit-request"] || null;
-    }).catch(() => {});
-  }, []);
+  const SUBMIT_URL = "https://functions.poehali.dev/c209120c-9333-4383-a2ce-0ec3dc148ef4";
 
   const handleSubmitRequest = async () => {
     if (!reqName.trim() || !reqPhone.trim()) {
@@ -175,10 +169,8 @@ export default function Index() {
     setReqError("");
     setReqSubmitting(true);
     try {
-      const url = submitUrlRef.current;
-      if (!url) throw new Error("no url");
       const worksText = selectedWorks.map(w => w.name).join(", ");
-      const res = await fetch(url, {
+      const res = await fetch(SUBMIT_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

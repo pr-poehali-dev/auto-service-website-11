@@ -28,24 +28,25 @@ export default function Admin() {
   const [requests, setRequests] = useState<Request[]>([]);
   const [loadingData, setLoadingData] = useState(false);
   const [dataError, setDataError] = useState("");
-  const [urls, setUrls] = useState<Record<string, string>>({});
   const [search, setSearch] = useState("");
 
-  useEffect(() => {
-    fetch("/func2url.json").then(r => r.json()).then(setUrls).catch(() => {});
-  }, []);
+  const URLS = {
+    "admin-login": "https://functions.poehali.dev/4729e85e-a246-4634-ad7d-c58ca56c9334",
+    "get-requests": "https://functions.poehali.dev/19db00a0-00fb-4b33-abea-6e05d93afa73",
+    "submit-request": "https://functions.poehali.dev/c209120c-9333-4383-a2ce-0ec3dc148ef4",
+  };
 
   useEffect(() => {
-    if (token && urls["get-requests"]) {
+    if (token) {
       loadRequests();
     }
-  }, [token, urls]);
+  }, [token]);
 
   const loadRequests = async () => {
     setLoadingData(true);
     setDataError("");
     try {
-      const res = await fetch(urls["get-requests"], {
+      const res = await fetch(URLS["get-requests"], {
         headers: { "X-Admin-Token": token },
       });
       const data = await res.json();
@@ -68,7 +69,7 @@ export default function Admin() {
     setLoginError("");
     setLoginLoading(true);
     try {
-      const res = await fetch(urls["admin-login"], {
+      const res = await fetch(URLS["admin-login"], {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username: loginUsername, password: loginPassword }),
@@ -149,7 +150,7 @@ export default function Admin() {
             )}
             <button
               type="submit"
-              disabled={loginLoading || !urls["admin-login"]}
+              disabled={loginLoading}
               className="w-full bg-white text-zinc-900 py-3 font-semibold text-sm hover:bg-zinc-200 transition-colors disabled:opacity-50 flex items-center justify-center gap-2"
             >
               {loginLoading ? (
